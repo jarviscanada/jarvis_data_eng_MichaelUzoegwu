@@ -126,6 +126,21 @@ This entry in `crontab` ensures that the script is run every minute.
 * * * * * bash path/to/project/root/scripts/host_usage.sh <pg_host> <pg_port> <db_name> <pg_user> <pg_password> &>> /tmp/host_usage.log  
 ```
 
+## Testing
+
+**Bash scripts**: 
+Performed manual testing of `host_info` and `host_usage` scripts. Both scripts were
+run manually and their entries into the DB compared with the outputs of `lscpu`, 
+`vmstat` and `df` to check for consistency.
+
+**ddl script**:
+`ddl.sql` was manually tested by checking the schemas of the created tables with
+the `\d <table_name>` command within the `psql` shell.
+
+## Deployment
+- Deploy on a Linux node by performing the steps in the [Setup](#setup) section.
+- Code is hosted on **GitHub**.
+
 ## Potential Improvements
 
 ### Streamline setup process
