@@ -26,7 +26,7 @@ cpu_architecture=$(parse_lscpu_simple '^Architecture:' '2')
 cpu_model=$(parse_lscpu_simple '^Model name:' '2')
 cpu_mhz=$(echo "$cpu_model" | awk '{print $5}' | sed 's/[^0-9.]//g' | awk '{print $1 * 1000}')
 l2_cache=$(parse_lscpu_simple '^L2 cache:' '3' ' ')
-total_mem=$(vmstat --unit M | tail -1 | awk '{print $4 * 1000}')
+total_mem=$(vmstat --unit M | tail -1 | awk '{print $4}')
 
 # Add row in host_info table
 export PGPASSWORD="$psql_password"
