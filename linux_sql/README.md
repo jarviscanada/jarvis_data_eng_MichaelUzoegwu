@@ -55,47 +55,24 @@ respectively.
 | 2023-11-28 11:29:52 | 1            | 3803 (MB)   | 96 (%)   | 1 (%)      | 2 (%)   | 17000 (MB)     |
 ---
 
-### Agent - `host_info.sh`
+### Agent - [`host_info.sh`](scripts/host_info.sh)
 `host_info.sh` collects hardware specifications mainly by parsing the output of
 the `lscpu` command. Once collected, the data is persisted into the DB by executing
 an `INSERT` statement with the `psql` command. **This script is only intended to
 be run once per host.**
-
 ```bash
 #Usage
 scripts/host_info.sh <pg_host> <pg_port> <db_name> <pg_user> <pg_password>
 ```
-```bash
-# Pseudocode
-parse_lscpu() { lscpu | egrep "..." | awk "..."  }
 
-cpu_number=$(parse_lscpu "...")
-cpu_architecture=$(parse_lscpu "...")
-...
-
-psql ... -c "INSERT INTO host_info (cpu_number,...) VALUES (2,...);" 
-```
-
-### Agent - `host_usage.sh`
+### Agent - [`host_usage.sh`](scripts/host_usage.sh)
 `host_usage.sh`  is similar in structure but collects usage data at time of execution.
 **This script runs every minute via a cron job.**
-
 ```bash
 #Usage
 scripts/host_usage.sh <pg_host> <pg_port> <db_name> <pg_user> <pg_password>
 ```
-```bash
-# Pseudocode
-parse_vmstat() { vmstat | awk "..."  }
-
-memory_free=$(parse_vmstat "..." )
-disk_io=$(parse_vmstat "...")
-...
-
-psql ... -c "INSERT INTO host_usage (memory_free,...) VALUES (3803,...);" 
-```
-
-### Utility - `psql_docker.sh`
+### Utility - [`psql_docker.sh`](scripts/psql_docker.sh)
 `psql_docker.sh` is a utility script that manages the docker container containing
 our psql database.
 ```bash
@@ -110,14 +87,11 @@ with the `pg_user` and `pg_password` parameters.
 - `start` starts the docker container with `docker container start`
 - `stop` stops the docker container with `docker container stop`
 
-### Utility - `ddl.sql`
-This file contains sql statements that will create our database with its two tables
-`host_info` and `host_usage`.
-```psql
---Pseudocode
-CREATE DATABASE host_agent;
-CREATE TABLE host_info (...);
-CREATE TABLE host_usage (...);
+### Utility - [`ddl.sql`](sql/ddl.sql)
+This file contains sql statements that will create our `host_agent` database with its two tables
+`host_info` and `host_usage`. Used with `psql` command, to initialize the DB.
+```bash
+psql -h <pg_host> -U <pg_user> -f sql/ddl.sql
 ```
 
 ### Automation - `crontab`
@@ -138,8 +112,9 @@ run manually and their entries into the DB compared with the outputs of `lscpu`,
 the `\d <table_name>` command within the `psql` shell.
 
 ## Deployment
-- Deploy on a Linux node by performing the steps in the [Setup](#setup) section.
-- Code is hosted on **GitHub**.
+Deploy on a Linux node by performing the steps in the [Setup](#setup) section.
+
+Code is hosted on **GitHub**.
 
 ## Potential Improvements
 
@@ -151,7 +126,7 @@ scripts/psql_docker.sh create <pg_user> <pg_password>
 export PGPASSWORD=$pg_password
 psql -h localhost -U <pg_user> -d host_agent -f sql/ddl.sql
 ```
-Alternatively modify `psql_docker.sh create` to have it run the `psql` command
+Alternatively, modify `psql_docker.sh create` to have it run the `psql` command
 shown above.
 
 ### Remove password parameters
