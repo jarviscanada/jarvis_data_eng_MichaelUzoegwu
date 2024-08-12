@@ -1,12 +1,12 @@
 # Linux Cluster Monitoring Agent
 
 ## Introduction
-The **Linux Cluster Administration (LCA)** team at Jarvis manages a Linux cluster of
-10 nodes. This project aims to help this team  collect hardware  specifications 
+The Linux Cluster Administration (LCA) team at Jarvis manages a Linux cluster of
+10 nodes. This project aims to help the team collect hardware specifications 
 and usage data of each node.
 
-Hardware and usage data are collected using two respective **Bash** scripts. This data
-is then persisted into a **PostgreSQL** database running in a **Docker** container.
+Hardware and usage data are collected using two respective Bash scripts. This data
+is then persisted into a PostgreSQL database running in a Docker container.
 
 ## Setup
 ```python
@@ -14,19 +14,19 @@ is then persisted into a **PostgreSQL** database running in a **Docker** contain
 # Both docker and psql need to be installed
 # ------------------------------------------
 ```
-Create a psql docker instance and set a psql superuser and password:
+Create a PostgreSQL Docker instance and set a psql superuser and password:
 ``` bash
 scripts/psql_docker.sh create <pg_user> <pg_password>
 ```
-Create `host_agent` DB with `host_info` and `host_usage` tables:
+Create the `host_agent` database with `host_info` and `host_usage` tables:
 ```bash
 psql -h <pg_host> -U <pg_user> -f sql/ddl.sql
 ```
-Store host information in DB **(this should only be done once)**:
+Store host information in the database **(this should only be done once)**:
 ```bash
 scripts/host_info.sh <pg_host> <pg_port> <db_name> <pg_user> <pg_password>
 ```
-Create cron job to store usage data **every minute**:
+Create a cron job to store usage data **every minute**:
 ```bash
 crontab -e
 # In the text editor type
@@ -39,8 +39,9 @@ crontab -e
 ## Implementation
 
 ### Database model
-There are two tables to store the `host info` and host `host usage` data
-respectively.
+
+There are two tables to store the host info and host usage data.
+
 ---
 `host_info` *columns and sample data* || *[key] and (unit) included for clarity*
 
@@ -57,7 +58,7 @@ respectively.
 
 ### Agent - [`host_info.sh`](scripts/host_info.sh)
 `host_info.sh` collects hardware specifications mainly by parsing the output of
-the `lscpu` command. Once collected, the data is persisted into the DB by executing
+the `lscpu` command. Once collected, the data is persisted into the database by executing
 an `INSERT` statement with the `psql` command. **This script is only intended to
 be run once per host.**
 ```bash
@@ -66,30 +67,30 @@ scripts/host_info.sh <pg_host> <pg_port> <db_name> <pg_user> <pg_password>
 ```
 
 ### Agent - [`host_usage.sh`](scripts/host_usage.sh)
-`host_usage.sh`  is similar in structure but collects usage data at time of execution.
+`host_usage.sh` is similar to `host_info.sh`, except it collects usage data at time of execution.
 **This script runs every minute via a cron job.**
 ```bash
 #Usage
 scripts/host_usage.sh <pg_host> <pg_port> <db_name> <pg_user> <pg_password>
 ```
 ### Utility - [`psql_docker.sh`](scripts/psql_docker.sh)
-`psql_docker.sh` is a utility script that manages the docker container containing
-our psql database.
+`psql_docker.sh` is a utility script that manages the docker container running
+the PostgreSQL database.
 ```bash
 scripts/psql_docker.sh <create|start|stop> <pg_user> <pg_password>
 ```
 *There are three modes `create|start|stop`.
-`create` requires `pg_user` and `pg_password` as  arguments to initialize 
-the psql DB. `start|stop` do not.*
+`create` requires `pg_user` and `pg_password` as arguments to initialize 
+the PostgreSQL DB. `start|stop` do not.*
 
-- `create` creates a docker container with a psql DB. A psql superuser is created
+- `create` creates a docker container with a PostgreSQL database. A psql superuser is created
 with the `pg_user` and `pg_password` parameters.
 - `start` starts the docker container with `docker container start`
 - `stop` stops the docker container with `docker container stop`
 
 ### Utility - [`ddl.sql`](sql/ddl.sql)
-This file contains sql statements that will create our `host_agent` database with its two tables
-`host_info` and `host_usage`. Used with `psql` command, to initialize the DB.
+This file contains sql statements that will create our `host_agent` database with its two tables,
+`host_info` and `host_usage`. It is used with the `psql` command to initialize the DB.
 ```bash
 psql -h <pg_host> -U <pg_user> -f sql/ddl.sql
 ```
@@ -103,8 +104,8 @@ This entry in `crontab` ensures that the script is run every minute.
 ## Testing
 
 **Bash scripts**: 
-Performed manual testing of `host_info` and `host_usage` scripts. Both scripts were
-run manually and their entries into the DB compared with the outputs of `lscpu`, 
+Performed manual testing of `host_info.sh` and `host_usage.sh`. Both scripts were
+run manually and their entries into the database were compared with the outputs of `lscpu`, 
 `vmstat` and `df` to check for consistency.
 
 **ddl script**:
@@ -112,9 +113,8 @@ run manually and their entries into the DB compared with the outputs of `lscpu`,
 the `\d <table_name>` command within the `psql` shell.
 
 ## Deployment
-Deploy on a Linux node by performing the steps in the [Setup](#setup) section.
-
-Code is hosted on **GitHub**.
+Deploy on a Linux node by cloning the repository and performing the steps in the 
+[setup](#setup) section.
 
 ## Potential Improvements
 
@@ -131,4 +131,4 @@ shown above.
 
 ### Remove password parameters
 To avoid exposing passwords we could ask the user to add their credentials in a 
-`~/.pgpass` file.
+`~/.pgpass` file. Alternatively, a script could create/modify this file directly.
