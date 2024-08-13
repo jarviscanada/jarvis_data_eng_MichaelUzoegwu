@@ -12,25 +12,33 @@ summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed venenatis 
 skills:
   # At least 5 skills
   proficient:
-    - Java
-    - Linux/Bash
-    - RDBMS/SQL
-    - Agile/Scrum
+    - JavaScript / TypeScript
+    - Angular
+    - React
+    - Python
+    - HTML/CSS
+    - Node.js
     - Git
   # At least 5 skills
   competent:
-    - Donec
-    - fermentum
-    - Donec
-    - fermentum
-    - Donec
+    - AWS
+    - PostgreSQL
+    - MongoDB
+    - Java
+    - C++
+    - Linux/Bash
+    - Firebase
+    - MongoDB
+    - Express.js
   # At least 5 skills
   familiar:
-    - Donec
-    - fermentum
-    - fermentum
-    - fermentum
-    - fermentum
+    - C#
+    - Qt
+    - Selenium
+    - WebPack
+    - OpenGL
+    - Pandas
+    - Numpy
 
 # List of Jarvis projects
 jarvis_projects:
