@@ -5,7 +5,7 @@ github_repo_root_url: https://github.com/jarviscanada/jarvis_data_eng_MichaelUzo
 
 # Introduce yourself, your academic and professional background.
 # What excites you about the software industry and your passion. At least 80 words
-summary: TODO
+summary: "Donec mattis sed justo et sagittis. Vestibulum lacinia nulla ipsum. Curabitur imperdiet nibh vitae leo lacinia laoreet. Nullam accumsan, lectus ut maximus ultricies, augue justo egestas mi, vel bibendum felis."
 
 # Group your skills by level.
 # Your skills can be anything software related (e.g. language, frameworks, methodologies, software, etc.).
@@ -79,16 +79,13 @@ highlighted_projects:
     #URL is optional
     git_url: "https://github.com/micuzo/resume-editor"
     # The project description must start with an action verb (https://bit.ly/3guO98u)
-    description:
+    description: Developed an online resume builder using React and Google Firebase to facilitate the creation of my resumes as PDFs. The idea was born out of a need to ensure visual consistency of my customized resume template across content-differing versions. Firebase was used to implement user authentication and resume storage, allowing users to manage multiple versions of their resumes. I used this application exclusively for over two years to create resumes, which contributed to securing multiple internships.
   - name: "Last Resort"
     #git_url: "https://github.com/micuzo/web-app"
-    description:
-  - name: "Bookstore Web App"
-    git_url: "https://github.com/micuzo/web-app"
-    description:
+    description: Worked as part of a team of three on a 2D platformer-shooter game built with OpenGL and C++, where my main responsibilities were centered around interactions between game entities and the environment. I developed terrain rendering from level data stored in CSV files and implemented an efficient method for detecting collisions between game entities and terrain. Additionally, I applied Dijkstra?s pathfinding algorithm to determine optimal movement for enemy AI agents.
   - name: "MulBot"
     git_url: "https://github.com/micuzo/web-app"
-    description:
+    description: Created an X (formerly Twitter) bot with Python to tweet team lineups of the Manchester United soccer team in a more user-friendly format. The bot retrieves game start times and team lineups, ordered by player positions (instead of shirt numbers), through the API-Football. The start times are used to dynamically set a cron job that triggers the bot to tweet. The application was deployed on a remote Linux machine via DigitalOcean.
 
 #List of professional experience
 #The job description allows hiring managers to understand your job and the technologies you used(e.g. programming languages, libraries, algorithms, hardware, tools, etc.).
@@ -103,19 +100,19 @@ professional_experience:
   - title: "Software Engineer Intern"
     company: "SurveyMonkey"
     duration: "2022-2022"
-    description: "TODO"
+    description: "Donec mattis sed justo et sagittis. Vestibulum lacinia nulla ipsum. Curabitur imperdiet nibh vitae leo lacinia laoreet. Nullam accumsan, lectus ut maximus ultricies, augue justo egestas mi, vel bibendum felis."
   - title: "Software QA Intern"
     company: "ABB"
     duration: "2022-2022"
-    description: "TODO"
+    description: "Donec mattis sed justo et sagittis. Vestibulum lacinia nulla ipsum. Curabitur imperdiet nibh vitae leo lacinia laoreet. Nullam accumsan, lectus ut maximus ultricies, augue justo egestas mi, vel bibendum felis."
   - title: "Software Developer Intern"
     company: "UKG"
     duration: "2021-2021"
-    description: "TODO"
+    description: "Donec mattis sed justo et sagittis. Vestibulum lacinia nulla ipsum. Curabitur imperdiet nibh vitae leo lacinia laoreet. Nullam accumsan, lectus ut maximus ultricies, augue justo egestas mi, vel bibendum felis."
   - title: "Software Developer Intern"
     company: "Autodesk"
     duration: "2021-2021"
-    description: "TODO"
+    description: "Donec mattis sed justo et sagittis. Vestibulum lacinia nulla ipsum. Curabitur imperdiet nibh vitae leo lacinia laoreet. Nullam accumsan, lectus ut maximus ultricies, augue justo egestas mi, vel bibendum felis."
 
 #List of edcuation
 education: 
