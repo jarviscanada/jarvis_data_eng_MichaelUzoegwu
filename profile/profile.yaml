@@ -1,11 +1,11 @@
 # Preferred name (Characters only)
 name: "Michael Uzoegwu"
 # Your GitHub repo root URL
-github_repo_root_url: https://github.com/jarviscanada/jarvis_data_eng_demo
+github_repo_root_url: https://github.com/jarviscanada/jarvis_data_eng_MichaelUzoegwu
 
 # Introduce yourself, your academic and professional background.
 # What excites you about the software industry and your passion. At least 80 words
-summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed venenatis a orci ac malesuada. Vivamus ligula elit, viverra eu ante porttitor, blandit convallis augue. Aliquam justo justo, mollis at lacus eu, rutrum finibus est. Vestibulum venenatis purus id accumsan pretium. In efficitur magna nec enim laoreet tincidunt. Ut libero metus, scelerisque nec eros vitae, sagittis pellentesque enim. Donec dictum felis volutpat, vehicula magna eu, imperdiet elit. Phasellus ut velit a massa efficitur faucibus. Sed volutpat, lacus sed sagittis luctus, elit.
+summary: TODO
 
 # Group your skills by level.
 # Your skills can be anything software related (e.g. language, frameworks, methodologies, software, etc.).
@@ -21,15 +21,14 @@ skills:
     - Git
   # At least 5 skills
   competent:
-    - AWS
     - PostgreSQL
+    - Firebase
+    - AWS
+    - C++
+    - Express.js
     - MongoDB
     - Java
-    - C++
     - Linux/Bash
-    - Firebase
-    - MongoDB
-    - Express.js
   # At least 5 skills
   familiar:
     - C#
@@ -46,41 +45,50 @@ jarvis_projects:
     git_url: "/linux_sql"
     # The project description allows hiring managers to understand your project and technologies you used(e.g. programming languages, libraries, algorithms, hardware, tools, etc.).
     # The project description must start with an action verb (https://bit.ly/3guO98u)
-    description: Suspendisse a tincidunt odio. Suspendisse posuere luctus aliquet. Quisque magna tellus, tempor vitae arcu sed, volutpat scelerisque lacus. Aliquam varius pulvinar dapibus. Ut a tincidunt sem. Aenean sollicitudin fringilla erat ut imperdiet. Phasellus fermentum, enim vitae laoreet elementum, eros nisl hendrerit lorem.
-  - name: "Core Java Apps"
-    git_url: "/core_java"
-    description:
-      - "Twitter App: Curabitur laoreet tristique leo, eget suscipit nisi. Sed in sodales ex. Maecenas vitae tincidunt dui, et eleifend quam."
-      - "JDBC App: Curabitur laoreet tristique leo, eget suscipit nisi. Sed in sodales ex. Maecenas vitae tincidunt dui, et eleifend quam."
-      - "Grep App: Curabitur laoreet tristique leo, eget suscipit nisi. Sed in sodales ex. Maecenas vitae tincidunt dui, et eleifend quam."
-  - name: "Springboot App"
-    git_url: "/springboot"
-    description: ""
-  - name: "Python Data Analytics"
-    git_url: "/python_data_anlytics"
-    description: ""
-  - name: "Hadoop"
-    git_url: "/hadoop"
-    description: ""
-  - name: "Spark"
-    git_url: "/spark"
-    description: ""
-  - name: "Cloud/DevOps"
-    git_url: "/cloud_devops"
-    description: ""
+    description: Enabled the Linux Cluster Administration (LCA) team to collect and store hardware specifications and system usage data of a Rocky Linux cluster of 10 nodes. This data was gathered using Bash scripts and persisted in a PostgreSQL database running within a Docker container.
+#  - name: "Core Java Apps"
+#    git_url: "/core_java"
+#    description:
+#      - "Twitter App: Curabitur laoreet tristique leo, eget suscipit nisi. Sed in sodales ex. Maecenas vitae tincidunt dui, et eleifend quam."
+#      - "JDBC App: Curabitur laoreet tristique leo, eget suscipit nisi. Sed in sodales ex. Maecenas vitae tincidunt dui, et eleifend quam."
+#      - "Grep App: Curabitur laoreet tristique leo, eget suscipit nisi. Sed in sodales ex. Maecenas vitae tincidunt dui, et eleifend quam."
+#  - name: "Springboot App"
+#    git_url: "/springboot"
+#    description: ""
+#  - name: "Python Data Analytics"
+#    git_url: "/python_data_anlytics"
+#    description: ""
+#  - name: "Hadoop"
+#    git_url: "/hadoop"
+#    description: ""
+#  - name: "Spark"
+#    git_url: "/spark"
+#    description: ""
+#  - name: "Cloud/DevOps"
+#    git_url: "/cloud_devops"
+#    description: ""
 
 # List of personal or academic projects
 # Feel free to add more projects
 highlighted_projects:
     #project name
-  - name: "Web app for resturant"
+#  - name: "League of Legends Companion App"
+#    #git_url: "https://github.com/micuzo/web-app"
+#    description:
+  - name: "MyResume"
     #URL is optional
-    git_url: "https://github.com/jarviscanada/jarvis_profile_builder"
+    git_url: "https://github.com/micuzo/resume-editor"
     # The project description must start with an action verb (https://bit.ly/3guO98u)
-    description: Suspendisse a tincidunt odio. Suspendisse posuere luctus aliquet. Quisque magna tellus, tempor vitae arcu sed, volutpat scelerisque lacus. Aliquam varius pulvinar dapibus. Ut a tincidunt sem. Aenean sollicitudin fringilla erat ut imperdiet. Phasellus fermentum, enim vitae laoreet elementum, eros nisl hendrerit lorem.
-  - name: "Machine Learning"
-    git_url:
-    description: Suspendisse a tincidunt odio. Suspendisse posuere luctus aliquet. Quisque magna tellus, tempor vitae arcu sed, volutpat scelerisque lacus. Aliquam varius pulvinar dapibus. Ut a tincidunt sem. Aenean sollicitudin fringilla erat ut imperdiet. Phasellus fermentum, enim vitae laoreet elementum, eros nisl hendrerit lorem.
+    description:
+  - name: "Last Resort"
+    #git_url: "https://github.com/micuzo/web-app"
+    description:
+  - name: "Bookstore Web App"
+    git_url: "https://github.com/micuzo/web-app"
+    description:
+  - name: "MulBot"
+    git_url: "https://github.com/micuzo/web-app"
+    description:
 
 #List of professional experience
 #The job description allows hiring managers to understand your job and the technologies you used(e.g. programming languages, libraries, algorithms, hardware, tools, etc.).
@@ -89,30 +97,42 @@ professional_experience:
   #Write your Jarvis role as a professional experience rather than training.
   - title: "Software Developer"
     company: "Jarvis"
-    duration: "2020-present"
+    duration: "2024-Present"
     # The project description must start with an action verb (https://bit.ly/3guO98u)
     description: "Donec mattis sed justo et sagittis. Vestibulum lacinia nulla ipsum. Curabitur imperdiet nibh vitae leo lacinia laoreet. Nullam accumsan, lectus ut maximus ultricies, augue justo egestas mi, vel bibendum felis."
-  - title: "Tutor"
-    company: "XYZ Company"
-    duration: "2019"
-    description: "Donec mattis sed justo et sagittis. Vestibulum lacinia nulla ipsum. Curabitur imperdiet nibh vitae leo lacinia laoreet. Nullam accumsan, lectus ut maximus ultricies, augue justo egestas mi, vel bibendum felis."
+  - title: "Software Engineer Intern"
+    company: "SurveyMonkey"
+    duration: "2022-2022"
+    description: "TODO"
+  - title: "Software QA Intern"
+    company: "ABB"
+    duration: "2022-2022"
+    description: "TODO"
+  - title: "Software Developer Intern"
+    company: "UKG"
+    duration: "2021-2021"
+    description: "TODO"
+  - title: "Software Developer Intern"
+    company: "Autodesk"
+    duration: "2021-2021"
+    description: "TODO"
 
 #List of edcuation
 education: 
-  - school_name: "XYZ university"
-    duration: "2012-2016"
-    degree: "Bachelor of Applied Sciences"
-    department: "Electrical and Computer Engineering"
+  - school_name: "Carleton University"
+    duration: "2018-2023"
+    degree: "Bachelor of Computer Science"
+    department: "Computer Science"
     # optional
     awards_achievements: 
-      - "Scholarship"
-      - "Dean's List (2015, 2016): Ut enim ad minim veniam"
-      - "GPA: 3.8/4.0"
-  - school_name: "XYZ university"
-    duration: "2016-2018"
-    degree: "Master of Engineering"
-    department: "Electrical and Computer Engineering"
-    awards_achievements: 
+      - "Carleton University Entrance Scholarship"
+      - "Dean's List (2019)"
+      - "GPA: 3.37/4.0"
+  - school_name: "George Brown College"
+    duration: "2024-Present"
+    degree: "Certificate"
+    department: "Practical AI and Machine Learning"
+    awards_achievements:
 
 #Optional section
 others:
@@ -120,12 +140,11 @@ others:
   - title: "Certificates"
     #list of items
     bullets:
-      - "Udacity Machine Learning (2019)"
-  - title: "Awards"
-    bullets:
-      - "Winner"
+      - "AWS Certified Solutions Architect Associate"
+#  - title: "Awards"
+#    bullets:
+#      - "Winner"
   - title: "Activities/Hobbies"
     bullets:
-      - "Basketball player"
-      - "Competitive gaming"
-      - "Volunteer, ABC Food bank: Ut enim ad minim veniam"
+      - "Soccer Fan"
+      - "Sci-fi Enthusiast"
