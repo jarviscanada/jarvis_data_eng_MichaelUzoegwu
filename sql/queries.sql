@@ -232,3 +232,15 @@ SELECT surname || ', '  || firstname AS name
 FROM cd.members;
 
 -- Question 27
+SELECT memid, telephone
+FROM cd.members
+WHERE telephone ~ '[()]'
+ORDER BY memid;
+
+-- Question 28
+SELECT
+	SUBSTRING(surname, 1, 1) AS letter,
+	COUNT(*)
+FROM cd.members
+GROUP BY letter
+ORDER BY letter;

@@ -335,13 +335,21 @@ SELECT surname || ', '  || firstname AS name
 FROM cd.members;
 ```
 
-###### Questions 27: []()
+###### Questions 27: [Find Phone Numbers With Parentheses](https://pgexercises.com/questions/string/reg.html)
 ```sql
-
+SELECT memid, telephone
+FROM cd.members
+WHERE telephone ~ '[()]'
+ORDER BY memid;
 ```
 
-###### Questions 28: []()
+###### Questions 28: [Count First Letter In Name](https://pgexercises.com/questions/string/substr.html)
 ```sql
-
+SELECT
+	SUBSTRING(surname, 1, 1) AS letter,
+	COUNT(*)
+FROM cd.members
+GROUP BY letter
+ORDER BY letter;
 ```
 
