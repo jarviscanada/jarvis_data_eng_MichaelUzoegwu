@@ -269,31 +269,79 @@ GROUP BY facid, "month"
 ORDER BY facid, month;
 ```
 
-###### Questions 21: []()
+###### Questions 21: [Count Members With Bookings](https://pgexercises.com/questions/aggregates/members1.html)
 ```sql
+SELECT COUNT(DISTINCT memid)
+FROM cd.bookings;
 ```
 
-###### Questions 2: []()
+###### Questions 22: [List First Booking After Sep 1st](https://pgexercises.com/questions/aggregates/nbooking.html)
 ```sql
+SELECT 
+	cd.members.surname, 
+	cd.members.firstname, 
+	cd.members.memid, 
+	MIN(starttime) AS starttime
+FROM cd.bookings
+JOIN cd.members
+	ON cd.bookings.memid = cd.members.memid
+WHERE starttime > '2012-09-01'
+GROUP BY 
+	cd.members.surname, 
+	cd.members.firstname,
+	cd.members.memid
+ORDER BY memid;
 ```
 
-###### Questions 2: []()
+###### Questions 23: [List of Names With Total](https://pgexercises.com/questions/aggregates/countmembers.html)
 ```sql
+SELECT
+	COUNT(*) OVER (),
+	firstname,
+	surname
+FROM cd.members
+ORDER BY joindate;
 ```
 
-###### Questions 2: []()
+###### Questions 24: [Produce A Numbered List of Members](https://pgexercises.com/questions/aggregates/nummembers.html)
 ```sql
+SELECT
+	ROW_NUMBER() OVER(),
+	firstname,
+	surname
+FROM cd.members
+ORDER BY joindate;
 ```
 
-###### Questions 2: []()
+###### Questions 25: [Select Facility With Most Slots](https://pgexercises.com/questions/aggregates/fachours4.html)
 ```sql
+SELECT facid, total
+FROM(
+	SELECT 
+		facid, 
+		SUM(slots) AS total,
+		RANK () OVER(
+			ORDER BY SUM(slots) DESC 
+		) AS rank
+	FROM cd.bookings
+	GROUP BY facid
+) AS ranked_totals
+WHERE RANK = 1;
 ```
 
-###### Questions 2: []()
+###### Questions 26: [Format Member Names](https://pgexercises.com/questions/string/concat.html)
 ```sql
+SELECT surname || ', '  || firstname AS name
+FROM cd.members;
 ```
 
-###### Questions 2: []()
+###### Questions 27: []()
 ```sql
+
+```
+
+###### Questions 28: []()
+```sql
+
 ```
 

@@ -178,3 +178,57 @@ GROUP BY facid, "month"
 ORDER BY facid, month;
 
 -- Question 21
+SELECT COUNT(DISTINCT memid)
+FROM cd.bookings;
+
+-- Question 22
+SELECT
+	cd.members.surname,
+	cd.members.firstname,
+	cd.members.memid,
+	MIN(starttime) AS starttime
+FROM cd.bookings
+JOIN cd.members
+	ON cd.bookings.memid = cd.members.memid
+WHERE starttime > '2012-09-01'
+GROUP BY
+	cd.members.surname,
+	cd.members.firstname,
+	cd.members.memid
+ORDER BY memid;
+
+-- Question 23
+SELECT
+	COUNT(*) OVER (),
+	firstname,
+	surname
+FROM cd.members
+ORDER BY joindate;
+
+-- Question 24
+SELECT
+	ROW_NUMBER() OVER(),
+	firstname,
+	surname
+FROM cd.members
+ORDER BY joindate;
+
+-- Question 25
+SELECT facid, total
+FROM(
+	SELECT
+		facid,
+		SUM(slots) AS total,
+		RANK () OVER(
+			ORDER BY SUM(slots) DESC
+		) AS rank
+	FROM cd.bookings
+	GROUP BY facid
+) AS ranked_totals
+WHERE RANK = 1;
+
+-- Question 26
+SELECT surname || ', '  || firstname AS name
+FROM cd.members;
+
+-- Question 27
