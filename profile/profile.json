@@ -27,7 +27,7 @@
       "name": "MyResume"
     },
     {
-      "description": "Worked as part of a team of three on a 2D platformer-shooter game built with OpenGL and C++, where my main responsibilities were centered around interactions between game entities and the environment. I developed terrain rendering from level data stored in CSV files and implemented an efficient method for detecting collisions between game entities and terrain. Additionally, I applied Dijkstra?s pathfinding algorithm to determine optimal movement for enemy AI agents.",
+      "description": "Worked as part of a team of three on a 2D platformer-shooter game built with OpenGL and C++, where my main responsibilities were centered around interactions between game entities and the environment. I developed terrain rendering from level data stored in CSV files and implemented an efficient method for detecting collisions between game entities and terrain. Additionally, I applied Dijkstra's pathfinding algorithm to determine optimal movement for enemy AI agents.",
       "name": "Last Resort"
     },
     {
