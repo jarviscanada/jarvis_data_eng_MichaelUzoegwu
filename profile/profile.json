@@ -64,7 +64,7 @@
   "professional_experience": [
     {
       "company": "Jarvis",
-      "description": "Worked on hands-on projects in an Agile environment. Created a computer monitoring agent for a Linux cluster using Bash scripts and a Docker-contained PostgreSQL database.",
+      "description": "Worked on hands-on projects in an Agile environment. Created a computer monitoring agent for a Linux cluster using Bash scripts and a Docker-contained PostgreSQL database. Followed by a learning activity delving deeper into SQL concepts.",
       "duration": "2024-Present",
       "title": "Software Developer"
     },

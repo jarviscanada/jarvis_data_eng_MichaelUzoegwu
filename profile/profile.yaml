@@ -96,7 +96,7 @@ professional_experience:
     company: "Jarvis"
     duration: "2024-Present"
     # The project description must start with an action verb (https://bit.ly/3guO98u)
-    description: "Worked on hands-on projects in an Agile environment. Created a computer monitoring agent for a Linux cluster using Bash scripts and a Docker-contained PostgreSQL database."
+    description: "Worked on hands-on projects in an Agile environment. Created a computer monitoring agent for a Linux cluster using Bash scripts and a Docker-contained PostgreSQL database. Followed by a learning activity delving deeper into SQL concepts."
   - title: "Software Engineer Intern"
     company: "SurveyMonkey"
     duration: "2022-2022"

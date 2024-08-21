@@ -28,7 +28,7 @@ Project source code: [https://github.com/jarviscanada/jarvis_data_eng_MichaelUzo
 
 ## Professional Experiences
 
-**Software Developer, Jarvis (2024-Present)**: Worked on hands-on projects in an Agile environment. Created a computer monitoring agent for a Linux cluster using Bash scripts and a Docker-contained PostgreSQL database.
+**Software Developer, Jarvis (2024-Present)**: Worked on hands-on projects in an Agile environment. Created a computer monitoring agent for a Linux cluster using Bash scripts and a Docker-contained PostgreSQL database. Followed by a learning activity delving deeper into SQL concepts.
 
 **Software Engineer Intern, SurveyMonkey (2022-2022)**: Performed A/B tests on 100,000+ users by making experimental changes to web pages built with React and JavaScript. I also designed and developed a Chrome extension to streamline access to technical details that were buried and spread across browser developer tools. The extension was built using TypeScript and the Chrome Extensions API, with Webpack used for file bundling.
 
