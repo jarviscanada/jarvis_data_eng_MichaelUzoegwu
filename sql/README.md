@@ -1,4 +1,10 @@
 # Introduction
+This project is largely a learning activity. It is a hands-on approach to learning 
+SQL by writing and executing several query exercises on an instance of a Docker-contained
+PostgreSQL database. 
+
+A wide range of SQL concepts are covered, including joins, 
+DML and DDL statements, constraints, aggregation, window functions, and string manipulation.
 
 # SQL Queries
 
