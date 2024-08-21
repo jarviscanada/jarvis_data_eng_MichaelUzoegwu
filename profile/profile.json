@@ -32,6 +32,7 @@
     },
     {
       "description": "Created an X (formerly Twitter) bot with Python to tweet team lineups of the Manchester United soccer team in a more user-friendly format. The bot retrieves game start times and team lineups, ordered by player positions (instead of shirt numbers), through the API-Football. The start times are used to dynamically set a cron job that triggers the bot to tweet. The application was deployed on a remote Linux machine via DigitalOcean.",
+      "git_url": "https://github.com/micuzo/mutd-lineup",
       "name": "MulBot"
     }
   ],
