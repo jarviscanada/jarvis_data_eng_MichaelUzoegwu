@@ -6,6 +6,43 @@ PostgreSQL database.
 A wide range of SQL concepts are covered, including joins, 
 DML and DDL statements, constraints, aggregation, window functions, and string manipulation.
 
+# Quick Start
+
+### Easy setup
+The exercises are obtained from [pgexercises.com](https://pgexercises.com/). Each solution in
+[SQL Queries](#sql-queries) has a link to the associated question on pgexercises. You can copy and paste the
+solution onto the site's online editor.
+
+### Custom setup
+**Prerequisites:** _docker and psql need to be installed._
+
+**Create psql docker instance** | *substitute `<username>` and `<password>` with credentials
+for the postgres superuser to have within the container.*
+```bash
+docker run --name sql-practice -e POSTGRES_USER=<username> -e POSTGRES_PASSWORD=<password> -d -v spdata:/var/lib/postgresql/data -p 5432:5432 postgres
+```
+
+**Populate and connect to psql instance**
+```bash
+psql -h localhost -U <username> -f clubdata.sql
+psql -h localhost -U <username> -d exercises
+```
+**Test setup** *(within psql shell)*
+```sql
+SELECT * FROM cd.members LIMIT 7;
+```
+```
+ memid |      surname      | firstname |                 address                 | zipcode |   telephone    | recommendedby |      joindate       
+-------+-------------------+-----------+-----------------------------------------+---------+----------------+---------------+---------------------
+     0 | GUEST             | GUEST     | GUEST                                   |       0 | (000) 000-0000 |               | 2012-07-01 00:00:00
+     1 | Smith             | Darren    | 8 Bloomsbury Close, Boston              |    4321 | 555-555-5555   |               | 2012-07-02 12:02:05
+     2 | Smith             | Tracy     | 8 Bloomsbury Close, New York            |    4321 | 555-555-5555   |               | 2012-07-02 12:08:23
+     3 | Rownam            | Tim       | 23 Highway Way, Boston                  |   23423 | (844) 693-0723 |               | 2012-07-03 09:32:15
+     4 | Joplette          | Janice    | 20 Crossing Road, New York              |     234 | (833) 942-4710 |             1 | 2012-07-03 10:25:05
+     5 | Butters           | Gerald    | 1065 Huntingdon Avenue, Boston          |   56754 | (844) 078-4130 |             1 | 2012-07-09 10:44:09
+     6 | Tracy             | Burton    | 3 Tunisia Drive, Boston                 |   45678 | (822) 354-9973 |               | 2012-07-15 08:52:55
+```
+
 # SQL Queries
 
 ###### Table Setup (DDL)
