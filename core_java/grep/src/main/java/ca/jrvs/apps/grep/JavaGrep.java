@@ -13,7 +13,7 @@ public interface JavaGrep {
   void process() throws IOException;
 
   /**
-   * Traverse a given directory and return all files
+   * Traverse a given directory and return all files recursively
    * @param rootDir input directory
    * @return files under rootDir
    */
