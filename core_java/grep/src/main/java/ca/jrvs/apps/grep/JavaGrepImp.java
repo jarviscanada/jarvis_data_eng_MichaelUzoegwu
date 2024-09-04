@@ -93,7 +93,7 @@ public class JavaGrepImp implements JavaGrep {
   @Override
   public boolean containsPattern(String line) {
     Matcher m = this.pattern.matcher(line);
-    return m.matches();
+    return m.find();
   }
 
   @Override

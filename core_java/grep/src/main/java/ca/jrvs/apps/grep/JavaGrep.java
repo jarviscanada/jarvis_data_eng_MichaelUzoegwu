@@ -21,8 +21,7 @@ public interface JavaGrep {
 
   /**
    * Read a file and return all the lines
-   *
-   * TODO: Explain FileReader, BufferReader, and character encoding
+   * Creates a {@code BufferedReader} to read lines 1 at a time from {@code inputFile}.
    *
    * @param inputFile  file to be read
    * @return lines
@@ -39,8 +38,8 @@ public interface JavaGrep {
 
   /**
    * Write lines to a file
-   *
-   * TODO: Explore FileOutputStream, OutputStreamWriter and Buffered Writer
+   * Creates a {@code BufferedWriter} to write lines one at a time
+   * Output file is overwritten if it already exists
    *
    * @param lines
    * @throws IOException
