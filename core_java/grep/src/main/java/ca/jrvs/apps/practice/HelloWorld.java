@@ -1,5 +1,6 @@
 package ca.jrvs.apps.practice;
 
+import ca.jrvs.apps.practice.dataStructure.bst.BST;
 import ca.jrvs.apps.practice.dataStructure.map.Employee;
 import ca.jrvs.apps.practice.dataStructure.map.JHashMap;
 import ca.jrvs.apps.practice.dataStructure.map.JMap;
@@ -9,12 +10,6 @@ import java.util.List;
 import java.util.Map;
 
 class HelloWorld {
-  public static void main(String[] args) {
-
-    //testingRegex(args);
-    hashMapPractice(args);
-  }
-
   private static void hashMapPractice(String[] args) {
     JMap<Employee, List<String>> empStrMap = new JHashMap<>();
 
@@ -48,5 +43,48 @@ class HelloWorld {
 
     String ip = "255.0.0.0";
     System.out.println("Matching ip address: " + rp.matchIp(ip));
+  }
+  private static void BSTPractice(String[] args) {
+    BST<Integer, String> bst = new BST<>();
+    bst.add(8, "eight");
+    bst.add(2, "two");
+    bst.add(1, "one");
+    bst.add(5, "five");
+    bst.add(3, "three");
+    bst.add(21, "twenty-one");
+    bst.add(13, "thirteen");
+
+    List<String> numbers;
+
+    System.out.println("In order");
+    numbers = bst.traverse(2);
+    System.out.println(numbers);
+
+    System.out.println("Post order");
+    numbers = bst.traverse(1);
+    System.out.println(numbers);
+
+    System.out.println("Pre order");
+    numbers = bst.traverse(0);
+    System.out.println(numbers);
+
+    System.out.println("Getting 5");
+    System.out.println(bst.get(5));
+
+    System.out.println("Getting 8");
+    System.out.println(bst.get(8));
+
+    System.out.println("Getting 13");
+    System.out.println(bst.get(13));
+
+    System.out.println("Getting 21");
+    System.out.println(bst.get(21));
+  }
+
+  public static void main(String[] args) {
+
+    //testingRegex(args);
+    //hashMapPractice(args);
+    BSTPractice(args);
   }
 }
