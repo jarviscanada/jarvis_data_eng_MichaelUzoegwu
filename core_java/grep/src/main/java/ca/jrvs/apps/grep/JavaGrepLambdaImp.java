@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -30,16 +31,14 @@ public class JavaGrepLambdaImp extends JavaGrepImp{
   @Override
   public List<File> listFiles(String rootDir) {
     File rootFile = new File(rootDir);
+
     if (!rootFile.exists())
       return new ArrayList<>();
 
+    if (!rootFile.isDirectory())
+      return Arrays.asList(rootFile);
+
     ArrayList<File> outFiles = new ArrayList<>();
-
-    if (!rootFile.isDirectory()){
-      outFiles.add(rootFile);
-      return outFiles;
-    }
-
     ArrayDeque<File> directories = new ArrayDeque<>();
     directories.add(rootFile);
 
@@ -53,7 +52,7 @@ public class JavaGrepLambdaImp extends JavaGrepImp{
               if (file.isDirectory()) directories.push((file));
               else outFiles.add(file);
             });
-      } catch (Exception ex) {
+      } catch (IOException ex) {
         logger.error("Could not list files in nested directory " + curDir.getPath(), ex);
       }
     }
