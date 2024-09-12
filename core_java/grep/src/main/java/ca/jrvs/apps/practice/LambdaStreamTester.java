@@ -52,7 +52,6 @@ public class LambdaStreamTester {
     IntStream s3 = lsp.createIntStream(numbers);
     printStream(s3.boxed(), "Number stream");
 
-
     // Stream<String> Conversion to List
     Stream<String> s4 = lsp.createStrStream(words);
     List<String> streamList = lsp.toList(s4);
@@ -61,7 +60,7 @@ public class LambdaStreamTester {
     // IntStream Conversion to List
     IntStream s5 = lsp.createIntStream(numbers);
     List<Integer> intStreamList = lsp.toList(s5);
-    logger.info("(Int stream converted to list): " + intStreamList.toString());
+    logger.info("(Int stream 1->10 converted to list): " + intStreamList.toString());
 
     // Create IntStream range
     IntStream s6 = lsp.createIntStream(15, 25);
@@ -84,23 +83,17 @@ public class LambdaStreamTester {
     lsp.printMessages(words, printer);
 
     // Print Odd numbers with printer
-    logger.info("Printing odd numbers with prefix/suffix printer");
+    logger.info("Printing odd numbers 1->10 with prefix/suffix printer");
     lsp.printOdd(lsp.createIntStream(1, 10), printer);
 
     // Print Nested List Squared
-    int[][] nestedListArrs = {
-        {1, 2, 3, 4},
-        {4, 5, 6, 7},
-        {8, 9, 10, 11}
-    };
+    List<List<Integer>> nestedLists = Arrays.asList(
+        Arrays.asList(1, 2, 3, 4),
+        Arrays.asList(5, 6, 7, 8),
+        Arrays.asList(9, 10, 11, 12)
+    );
 
-    List<List<Integer>> nestedLists = new ArrayList<>();
-
-    for (int i = 0; i < nestedListArrs.length; i++){
-      Arrays.asList(nestedListArrs[i]);
-      //nestedListArrs[i].as
-      //nestedLists.add(Arrays.asList(nestedListArrs[i]));
-    }
-
+    Stream<Integer> s9 = lsp.flatNestedInt(nestedLists.stream());
+    printStream(s9, "Flattening and squaring [[1,2,3,4] [5,6,7,8] [9,10,11,12]]");
   }
 }

@@ -1,18 +1,16 @@
 package ca.jrvs.apps.practice;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-
 public class LambdaStreamPractice implements LambdaStreamExc{
-
   @Override
   public Stream<String> createStrStream(String... strings) {
     return Arrays.stream(strings);
@@ -41,10 +39,7 @@ public class LambdaStreamPractice implements LambdaStreamExc{
 
   @Override
   public <E> List<E> toList(Stream<E> stream) {
-    List<E> list = new ArrayList<>();
-    stream.forEach((e) -> list.add(e));
-    stream.close();
-    return list;
+    return stream.collect(Collectors.toList());
   }
 
   @Override
@@ -54,14 +49,7 @@ public class LambdaStreamPractice implements LambdaStreamExc{
 
   @Override
   public IntStream createIntStream(int start, int end) {
-    int seqLength = end - start + 1;
-    int[] sequence = new int[seqLength];
-
-    for (int i = 0 ; i < seqLength;  i++){
-      sequence[i] = start + i;
-    }
-
-    return IntStream.of(sequence);
+    return IntStream.range(start, end + 1);
   }
 
   @Override
@@ -98,12 +86,8 @@ public class LambdaStreamPractice implements LambdaStreamExc{
 
   @Override
   public Stream<Integer> flatNestedInt(Stream<List<Integer>> ints) {
-    ArrayList<Integer> flattened = new ArrayList<>();
-    ints.forEach((list) -> {
-      list.forEach((i) -> flattened.add(i));
-    });
-
-    return flattened.stream()
+    return ints
+        .flatMap((list) -> list.stream())
         .map((i) -> (int) Math.pow(i, 2));
   }
 }
