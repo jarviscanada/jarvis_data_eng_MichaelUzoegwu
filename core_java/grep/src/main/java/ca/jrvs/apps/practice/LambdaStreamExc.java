@@ -15,7 +15,7 @@ public interface LambdaStreamExc {
    * @param strings
    * @return
    */
-  Stream<String> createStream(String... strings);
+  Stream<String> createStrStream(String... strings);
 
   /**
    * Convert all strings to uppercase
@@ -39,7 +39,7 @@ public interface LambdaStreamExc {
   Stream<String> filter(Stream<String> stringStream, String pattern);
 
   /**
-   * Create a intStream from a arr[]
+   * Create a intStream from an arr[]
    * @param arr
    * @return
    */
@@ -133,7 +133,7 @@ public interface LambdaStreamExc {
    * lse.printOdd(lse.createIntStream(0, 5), lse.getLambdaPrinter("odd number:", "!"));
    *
    * sout:
-   * odd number:1!
+   * odd number:1!;
    * odd number:3!
    * odd number:5!
    *
