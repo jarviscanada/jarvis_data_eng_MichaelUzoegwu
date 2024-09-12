@@ -19,7 +19,7 @@ import org.slf4j.LoggerFactory;
 
 public class JavaGrepImp implements JavaGrep {
 
-  private final Logger logger = LoggerFactory.getLogger(JavaGrepImp.class);
+  protected final Logger logger = LoggerFactory.getLogger(JavaGrepImp.class);
 
   private String regex;
   private String rootPath;
@@ -31,7 +31,6 @@ public class JavaGrepImp implements JavaGrep {
     ArrayList<String> matchedLines = new ArrayList<>();
 
     for (File file : listFiles(rootPath)){
-      List<String> lines = readLines(file);
       for (String line : readLines(file)) {
         if(containsPattern(line)) matchedLines.add(line);
       }
