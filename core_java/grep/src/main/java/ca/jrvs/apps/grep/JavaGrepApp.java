@@ -1,8 +1,5 @@
 package ca.jrvs.apps.grep;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
 import org.apache.log4j.BasicConfigurator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

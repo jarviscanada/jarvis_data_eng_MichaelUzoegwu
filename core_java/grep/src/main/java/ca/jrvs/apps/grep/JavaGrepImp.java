@@ -3,17 +3,14 @@ package ca.jrvs.apps.grep;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Stream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,9 +27,11 @@ public class JavaGrepImp implements JavaGrep {
   public void process() throws IOException {
     ArrayList<String> matchedLines = new ArrayList<>();
 
-    for (File file : listFiles(rootPath)){
+    for (File file : listFiles(rootPath)) {
       for (String line : readLines(file)) {
-        if(containsPattern(line)) matchedLines.add(line);
+        if (containsPattern(line)) {
+          matchedLines.add(line);
+        }
       }
     }
 
@@ -44,10 +43,11 @@ public class JavaGrepImp implements JavaGrep {
     File rootFile = new File(rootDir);
     ArrayList<File> outFiles = new ArrayList<>();
 
-    if (!rootFile.exists())
+    if (!rootFile.exists()) {
       return new ArrayList<>();
+    }
 
-    if (!rootFile.isDirectory()){
+    if (!rootFile.isDirectory()) {
       outFiles.add(rootFile);
       return outFiles;
     }
@@ -60,10 +60,11 @@ public class JavaGrepImp implements JavaGrep {
       File[] files = curDir.listFiles();
 
       for (File file : files) {
-        if (file.isDirectory())
+        if (file.isDirectory()) {
           directories.push(file);
-        else
+        } else {
           outFiles.add(file);
+        }
       }
     }
 
@@ -72,13 +73,15 @@ public class JavaGrepImp implements JavaGrep {
 
   @Override
   public List<String> readLines(File inputFile) throws IllegalArgumentException {
-    if (!inputFile.exists()) throw new IllegalArgumentException("Cannot read non-existent file.");
+    if (!inputFile.exists()) {
+      throw new IllegalArgumentException("Cannot read non-existent file.");
+    }
 
     ArrayList<String> lines = new ArrayList<>();
 
     try (BufferedReader reader = new BufferedReader(new FileReader(inputFile))) {
       String currentLine = reader.readLine();
-      while (currentLine != null){
+      while (currentLine != null) {
         lines.add(currentLine);
         currentLine = reader.readLine();
       }
@@ -99,8 +102,8 @@ public class JavaGrepImp implements JavaGrep {
   public void writeToFile(List<String> lines) throws IOException {
     File outFileFile = new File(outFile);
 
-    try (BufferedWriter writer = new BufferedWriter( new FileWriter(outFileFile))){
-      for (String line : lines){
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter(outFileFile))) {
+      for (String line : lines) {
         writer.append(line);
         writer.newLine();
       }

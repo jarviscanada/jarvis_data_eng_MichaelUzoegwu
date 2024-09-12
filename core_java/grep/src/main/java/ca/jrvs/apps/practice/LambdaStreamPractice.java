@@ -10,7 +10,8 @@ import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-public class LambdaStreamPractice implements LambdaStreamExc{
+public class LambdaStreamPractice implements LambdaStreamExc {
+
   @Override
   public Stream<String> createStrStream(String... strings) {
     return Arrays.stream(strings);

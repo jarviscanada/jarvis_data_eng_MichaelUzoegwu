@@ -1,7 +1,5 @@
 package ca.jrvs.apps.grep;
 
-import java.io.File;
-import java.util.List;
 import org.apache.log4j.BasicConfigurator;
 
 public class JavaGrepLambdaApp extends JavaGrepApp {
@@ -13,7 +11,7 @@ public class JavaGrepLambdaApp extends JavaGrepApp {
 
     BasicConfigurator.configure();
 
-    JavaGrepLambdaImp  javaGrepLambdaImp = new JavaGrepLambdaImp();
+    JavaGrepLambdaImp javaGrepLambdaImp = new JavaGrepLambdaImp();
     javaGrepLambdaImp.setRegex(args[0]);
     javaGrepLambdaImp.setRootPath(args[1]);
     javaGrepLambdaImp.setOutFile(args[2]);

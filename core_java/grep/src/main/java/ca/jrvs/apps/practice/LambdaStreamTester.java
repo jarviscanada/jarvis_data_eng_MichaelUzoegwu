@@ -1,6 +1,5 @@
 package ca.jrvs.apps.practice;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
@@ -11,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class LambdaStreamTester {
+
   final static Logger logger = LoggerFactory.getLogger(LambdaStreamPractice.class);
 
   static <T> void printStream(Stream<T> stream, String label) {
@@ -31,7 +31,7 @@ public class LambdaStreamTester {
     LambdaStreamPractice lsp = new LambdaStreamPractice();
     BasicConfigurator.configure();
 
-    String[] words = { "The", "Quick", "Brown", "Fox", "Jumps", "Over", "The", "Lazy", "Dog"};
+    String[] words = {"The", "Quick", "Brown", "Fox", "Jumps", "Over", "The", "Lazy", "Dog"};
     int[] numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
     // Create String Stream

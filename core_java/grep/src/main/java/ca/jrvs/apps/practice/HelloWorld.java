@@ -5,11 +5,10 @@ import ca.jrvs.apps.practice.dataStructure.map.Employee;
 import ca.jrvs.apps.practice.dataStructure.map.JHashMap;
 import ca.jrvs.apps.practice.dataStructure.map.JMap;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 class HelloWorld {
+
   private static void hashMapPractice(String[] args) {
     JMap<Employee, List<String>> empStrMap = new JHashMap<>();
 
@@ -31,6 +30,7 @@ class HelloWorld {
 //      System.out.println("-----------");
 //    }
   }
+
   private static void testingRegex(String[] args) {
     RegexPractice rp = new RegexPractice();
 
@@ -44,6 +44,7 @@ class HelloWorld {
     String ip = "255.0.0.0";
     System.out.println("Matching ip address: " + rp.matchIp(ip));
   }
+
   private static void BSTPractice(String[] args) {
     BST<Integer, String> bst = new BST<>();
     bst.add(8, "eight");

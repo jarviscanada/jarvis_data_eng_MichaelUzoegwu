@@ -2,10 +2,10 @@ package ca.jrvs.apps.practice;
 
 import java.util.regex.Pattern;
 
-public class RegexPractice implements  RegexExc {
+public class RegexPractice implements RegexExc {
 
   @Override
-  public boolean matchJpeg(String filename){
+  public boolean matchJpeg(String filename) {
     return Pattern.matches(".*\\.(?:jpg|jpeg)$", filename);
   }
 

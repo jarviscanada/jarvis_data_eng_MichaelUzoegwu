@@ -13,16 +13,17 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class JavaGrepLambdaImp extends JavaGrepImp{
+public class JavaGrepLambdaImp extends JavaGrepImp {
 
   @Override
   public List<String> readLines(File inputFile) throws IllegalArgumentException {
-    if (!inputFile.exists()) throw new IllegalArgumentException("Cannot read non-existent file.");
+    if (!inputFile.exists()) {
+      throw new IllegalArgumentException("Cannot read non-existent file.");
+    }
 
     try (Stream<String> file = Files.lines(inputFile.toPath(), StandardCharsets.UTF_8)) {
       return file.collect(Collectors.toList());
-    }
-    catch (UncheckedIOException|IOException ex) {
+    } catch (UncheckedIOException | IOException ex) {
       logger.warn("Skipping file (could not read) " + inputFile.getPath());
       return new ArrayList<>();
     }
@@ -32,11 +33,13 @@ public class JavaGrepLambdaImp extends JavaGrepImp{
   public List<File> listFiles(String rootDir) {
     File rootFile = new File(rootDir);
 
-    if (!rootFile.exists())
+    if (!rootFile.exists()) {
       return new ArrayList<>();
+    }
 
-    if (!rootFile.isDirectory())
+    if (!rootFile.isDirectory()) {
       return Arrays.asList(rootFile);
+    }
 
     ArrayList<File> outFiles = new ArrayList<>();
     ArrayDeque<File> directories = new ArrayDeque<>();
@@ -49,8 +52,11 @@ public class JavaGrepLambdaImp extends JavaGrepImp{
         filePaths
             .map((filePath) -> new File(filePath.toString()))
             .forEach((file) -> {
-              if (file.isDirectory()) directories.push((file));
-              else outFiles.add(file);
+              if (file.isDirectory()) {
+                directories.push((file));
+              } else {
+                outFiles.add(file);
+              }
             });
       } catch (IOException ex) {
         logger.error("Could not list files in nested directory " + curDir.getPath(), ex);

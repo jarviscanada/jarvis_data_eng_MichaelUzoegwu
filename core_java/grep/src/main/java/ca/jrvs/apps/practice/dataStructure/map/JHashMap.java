@@ -1,13 +1,12 @@
 package ca.jrvs.apps.practice.dataStructure.map;
 
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 public class JHashMap<K, V> implements JMap<K, V> {
 
-  private class Node<K,V> {
+  private class Node<K, V> {
+
     public Node next;
     final K key;
     final V value;
@@ -21,11 +20,11 @@ public class JHashMap<K, V> implements JMap<K, V> {
   private int size;
   private Node[] table;
 
-  public JHashMap(){
+  public JHashMap() {
     this(10);
   }
 
-  public JHashMap(int initialCapacity){
+  public JHashMap(int initialCapacity) {
     size = initialCapacity;
     table = new Node[initialCapacity];
   }
@@ -37,8 +36,9 @@ public class JHashMap<K, V> implements JMap<K, V> {
     Node<K, V> curNode = table[putIndex];
 
     while (curNode != null) {
-      if (curNode.key == key || curNode.key.equals(key))
+      if (curNode.key == key || curNode.key.equals(key)) {
         return curNode.value;
+      }
       curNode = curNode.next;
     }
 
@@ -56,14 +56,13 @@ public class JHashMap<K, V> implements JMap<K, V> {
   }
 
   @Override
-  public V put(K key, V value){
+  public V put(K key, V value) {
     int putIndex = getPutIndex(key);
     Node<K, V> putNode = new Node<>(key, value);
 
-    if (table[putIndex] == null){
+    if (table[putIndex] == null) {
       table[putIndex] = putNode;
-    }
-    else {
+    } else {
       Node<K, V> curNode = table[putIndex];
       while (curNode.next != null) {
         curNode = curNode.next;
@@ -75,7 +74,7 @@ public class JHashMap<K, V> implements JMap<K, V> {
   }
 
   @Override
-  public Set<Map.Entry<K,V>> entrySet() {
+  public Set<Map.Entry<K, V>> entrySet() {
     return null;
   }
 
