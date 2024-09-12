@@ -8,117 +8,99 @@ import java.util.stream.Stream;
 
 public interface LambdaStreamExc {
   /**
-   * Create a String stream from array
+   * Creates a {@link String} stream from an array.
    *
-   * note: arbitrary number of value will be stored in an array
-   *
-   * @param strings
-   * @return
+   * @param strings An array of {@link String} to be included in the {@link Stream}.
+   * @return A {@link Stream} of strings.
    */
   Stream<String> createStrStream(String... strings);
 
   /**
-   * Convert all strings to uppercase
-   * please use createStrStream
+   * Converts a {@link String} array into a {@link Stream} with each string in uppercase.
    *
-   * @param strings
-   * @return
+   * @param strings An array of {@link String} to be transformed to uppercase.
+   * @return A {@link Stream} containing the input strings in uppercase.
    */
   Stream<String> toUpperCase(String... strings);
 
   /**
-   * filter strings that contains the pattern
-   * e.g.
-   * filter(stringStream, "a") will return another stream which no element contains a
+   * Filters strings that contain a RegEx pattern.
    *
-   *
-   * @param stringStream
-   * @param pattern
-   * @return
+   * @param stringStream Input {@link Stream} of strings.
+   * @param pattern RegEx pattern used to filter out strings.
+   * @return A {@link Stream} of strings that do not contain the RegEx pattern.
    */
   Stream<String> filter(Stream<String> stringStream, String pattern);
 
   /**
-   * Create a intStream from an arr[]
+   * Creates an {@link IntStream} from an Array of {@code int} values.
    * @param arr
-   * @return
+   * @return {@link IntStream}
    */
   IntStream createIntStream(int[] arr);
 
   /**
-   * Convert a stream to list
+   * Converts a {@link Stream} to a list.
    *
    * @param stream
    * @param <E>
-   * @return
+   * @return {@link List}
    */
   <E> List<E> toList(Stream <E> stream);
 
 
   /**
-   * Convert a intStream to list
+   * Converts an {@link IntStream} to a list.
    * @param intStream
-   * @return
+   * @return {@link List}
    */
   List<Integer> toList(IntStream intStream);
 
   /**
-   * Create a IntStream range from start to end inclusive
+   * Creates an IntStream with values from {@code start} to {@code end} inclusive.
    * @param start
    * @param end
-   * @return
+   * @return {@link IntStream}
    */
   IntStream createIntStream(int start, int end);
 
   /**
-   * Convert a intStream to a doubleStream
-   * and compute square root of each element
+   * Converts an {@link IntStream} to a {@link DoubleStream}
+   * and computes the square root of each element.
    * @param intStream
-   * @return
+   * @return {@link DoubleStream}
    */
   DoubleStream squareRootIntStream(IntStream intStream);
 
   /**
-   * filter all even number and return odd numbers from a intStream
+   * Filters out all even number from an {@link IntStream}.
    * @param intStream
-   * @return
+   * @return {@link IntStream}
    */
   IntStream getOdd(IntStream intStream);
 
   /**
-   * Return a lambda function that print a message with a prefix and suffix
-   * This lambda can be useful to format logs
+   * Returns a lambda function that print a message with a prefix and suffix.
+   * This lambda can be useful to format logs.
    *
-   * You will learn:
-   *   - functional interface http://bit.ly/2pTXRwM & http://bit.ly/33onFig
-   *   - lambda syntax
+   * <pre><code>
+   *   Consumer&lt;String&gt; printer = getLambdaPrinter("(Lambda Printer)", "[INFO]");
+   *   printer.accept("This is a message");
+   * </code></pre>
    *
-   * e.g.
-   * LambdaStreamExc lse = new LambdaStreamImp();
-   * Consumer<String> printer = lse.getLambdaPrinter("start>", "<end");
-   * printer.accept("Message body");
-   *
-   * sout:
-   * start>Message body<end
-   *
-   * @param prefix prefix str
-   * @param suffix suffix str
-   * @return
+   * @param prefix Text to be added before the printed message.
+   * @param suffix Text to be added after the printed message.
+   * @return Printer that prints a given {@link String}.
    */
   Consumer<String> getLambdaPrinter(String prefix, String suffix);
 
   /**
-   * Print each message with a given printer
-   * Please use `getLambdaPrinter` method
+   * Prints multiple messages with a given printer.
    *
-   * e.g.
-   * String[] messages = {"a","b", "c"};
-   * lse.printMessages(messages, lse.getLambdaPrinter("msg:", "!") );
-   *
-   * sout:
-   * msg:a!
-   * msg:b!
-   * msg:c!
+   * <pre><code>
+   *  String[] messages = {"a", "b", "c"};
+   *  printMessages(messages, getLambdaPrinter("msg:", "!"));
+   * </code></pre>
    *
    * @param messages
    * @param printer
@@ -126,29 +108,17 @@ public interface LambdaStreamExc {
   void printMessages(String[] messages, Consumer<String> printer);
 
   /**
-   * Print all odd number from a intStream.
-   * Please use `createIntStream` and `getLambdaPrinter` methods
-   *
-   * e.g.
-   * lse.printOdd(lse.createIntStream(0, 5), lse.getLambdaPrinter("odd number:", "!"));
-   *
-   * sout:
-   * odd number:1!;
-   * odd number:3!
-   * odd number:5!
-   *
+   * Prints all odd number from an {@link IntStream} with a given printer.
    * @param intStream
    * @param printer
    */
   void printOdd(IntStream intStream, Consumer<String> printer);
 
   /**
-   * Square each number from the input.
-   * Please write two solutions and compare difference
-   *   - using flatMap
-   *
-   * @param ints
-   * @return
+   * Squares each number from the input {@link Stream} of {@link List}&lt;{@link Integer}&gt;.
+   * <br>Returns a stream with input lists transformed and flattened.
+   * @param ints A {@link Stream} of {@link List}&lt;{@link Integer}&gt; containing integers to be squared.
+   * @return A flattened {@link Stream} of {@link Integer} where each integer from the input lists is squared.
    */
   Stream<Integer> flatNestedInt(Stream<List<Integer>> ints);
 }
