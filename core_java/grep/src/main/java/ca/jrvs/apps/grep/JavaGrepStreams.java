@@ -1,7 +1,6 @@
 package ca.jrvs.apps.grep;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -9,7 +8,7 @@ public interface JavaGrepStreams {
 
   /**
    * Recursively traverses a given directory and returns all files. If {@code rootDir} is a file,
-   * returns a {@link List} only containing the {@link File} at the path specified by
+   * returns a {@link Stream} only containing the {@link File} at the path specified by
    * {@code rootDir}.
    *
    * @param rootDir File path of input directory or file.
