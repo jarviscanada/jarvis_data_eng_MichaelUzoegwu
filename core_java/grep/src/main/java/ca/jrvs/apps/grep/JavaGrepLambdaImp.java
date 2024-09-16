@@ -13,32 +13,40 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class JavaGrepLambdaImp extends JavaGrepImp {
+public class JavaGrepLambdaImp extends JavaGrepImp implements JavaGrepStreams {
 
   @Override
-  public List<String> readLines(File inputFile) throws IllegalArgumentException {
+  public void process() throws IOException {
+    List<String> matchedLines = listFilesStream(rootPath)
+        .flatMap((file) -> readLinesStream(file))
+        .filter((line) -> containsPattern(line))
+        .collect(Collectors.toList());
+
+    writeToFile(matchedLines);
+  }
+
+  public Stream<String> readLinesStream(File inputFile) throws IllegalArgumentException {
     if (!inputFile.exists()) {
       throw new IllegalArgumentException("Cannot read non-existent file.");
     }
 
-    try (Stream<String> file = Files.lines(inputFile.toPath(), StandardCharsets.UTF_8)) {
-      return file.collect(Collectors.toList());
+    try (Stream<String> lines = Files.lines(inputFile.toPath(), StandardCharsets.UTF_8)) {
+      return lines.collect(Collectors.toList()).stream();
     } catch (UncheckedIOException | IOException ex) {
       logger.warn("Skipping file (could not read) " + inputFile.getPath());
-      return new ArrayList<>();
+      return null;
     }
   }
 
-  @Override
-  public List<File> listFiles(String rootDir) {
+  public Stream<File> listFilesStream(String rootDir) {
     File rootFile = new File(rootDir);
 
     if (!rootFile.exists()) {
-      return new ArrayList<>();
+      return null;
     }
 
     if (!rootFile.isDirectory()) {
-      return Arrays.asList(rootFile);
+      return Arrays.asList(rootFile).stream();
     }
 
     ArrayList<File> outFiles = new ArrayList<>();
@@ -63,6 +71,6 @@ public class JavaGrepLambdaImp extends JavaGrepImp {
       }
     }
 
-    return outFiles;
+    return outFiles.stream();
   }
 }

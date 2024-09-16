@@ -18,10 +18,10 @@ public class JavaGrepImp implements JavaGrep {
 
   protected final Logger logger = LoggerFactory.getLogger(JavaGrepImp.class);
 
-  private String regex;
-  private String rootPath;
-  private String outFile;
-  private Pattern pattern;
+  protected String regex;
+  protected String rootPath;
+  protected String outFile;
+  protected Pattern pattern;
 
   @Override
   public void process() throws IOException {
