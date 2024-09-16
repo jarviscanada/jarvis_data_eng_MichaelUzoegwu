@@ -40,6 +40,7 @@ The app iterates through all files in a root search directory, reads each line, 
 contains a specified regular expression, and writes matching lines to an output.
 
 ```python
+# Pseudocode
 for file in listFiles(root-search-directory):
     for line in readLines(file):
         if line.contains(regular-expression):
@@ -57,6 +58,7 @@ with the methods `readLinesStream()` and `listFilesStream()` implemented to use 
 instead of lists, improving memory efficiency by processing data lazily.
 
 ```python
+# Pseudocode
 matchedLines = streamFiles(rootPath)
 .mapToLines(...)
 .filter(...)
