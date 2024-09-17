@@ -9,14 +9,18 @@ public class JavaGrepApp {
   final static Logger logger = LoggerFactory.getLogger(JavaGrep.class);
 
   public static void main(String[] args) {
-    if (args.length != 3) {
+    if (args.length < 3 || args.length > 4) {
       throw new IllegalArgumentException("USAGE: JavaGrep regex rootPath outFile");
     }
 
-    // Use default logger config
-    BasicConfigurator.configure();
+    JavaGrepImp javaGrepImp;
+    if (args.length == 4 && args[3].equals("--streams")) {
+      javaGrepImp = new JavaGrepLambdaImp();
+    } else {
+      javaGrepImp = new JavaGrepImp();
+    }
 
-    JavaGrepImp javaGrepImp = new JavaGrepImp();
+    BasicConfigurator.configure();
     javaGrepImp.setRegex(args[0]);
     javaGrepImp.setRootPath(args[1]);
     javaGrepImp.setOutFile(args[2]);
@@ -27,6 +31,4 @@ public class JavaGrepApp {
       logger.error("Error: Unable to process", ex);
     }
   }
-
 }
-

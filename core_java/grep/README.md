@@ -15,8 +15,11 @@ Java's `Pattern` class for regex matching.
 mvn clean package
 
 # Run the application
-java -jar target/grep-1.0-SNAPSHOT.jar <regular-expression> <root-search-directory> <output-file>
+java -jar target/grep-1.0-SNAPSHOT.jar <regular-expression> <root-search-directory> <output-file> <--stream>
 ```
+
+- `--stream` is **optional**. Include this flag if you want to use the stream implementation of the
+  application.
 
 ### Docker
 
@@ -31,8 +34,11 @@ mvn clean package
 docker build -t <image-name>
 
 # Create and execute container
-docker run --rm -v `pwd`/data:/data -v `pwd`/log:/log <image-name> <regular-expression> /data /log/grep.out
+docker run --rm -v `pwd`/data:/data -v `pwd`/log:/log <image-name> <regular-expression> /data /log/grep.out <--stream>
 ```
+
+- `--stream` is **optional**. Include this flag if you want to use the stream implementation of the
+  application.
 
 # Implemenation
 
@@ -56,6 +62,10 @@ implementation using streams has been made to process lines more efficiently.
 A [`JavaGrepLambdaImp`](src/main/java/ca/jrvs/apps/grep/JavaGrepLambdaImp.java) class was created,
 with the methods `readLinesStream()` and `listFilesStream()` implemented to use and return streams
 instead of lists, improving memory efficiency by processing data lazily.
+
+An optional `--stream` flag was added to enable the use of the stream-based
+implementation ([`JavaGrepLambdaImp`](src/main/java/ca/jrvs/apps/grep/JavaGrepLambdaImp.java)) of
+the application.
 
 ```python
 # Pseudocode
@@ -99,14 +109,12 @@ To simplify running the Docker container, we could add a `CMD` instruction to
 the [`Dockerfile`](Dockerfile) with default arguments. Additionally, we could create a script that
 wraps the docker run command, requiring only the Java application's arguments.
 
-#### 2) Simplify access to `Stream` implementation
+#### 2) Improved testing
 
-Currently, the stream implementation of the app, which uses streams for lazy operations, is
-defined in a separate class with its own main method, making it difficult to run. We could
-refactor it to remove the main method and have a centralized main method that accepts an extra
-parameter to determine whether to use the stream version or the non-stream version.
+To improve the JavaGrep application, unit tests could be added using a testing framework like JUnit
+to ensure that the matching and file search functionalities are working correctly.
 
 #### 3) Ignore hidden files
 
-The application currently does not ignore hidden files. We could add a parameter to allow it to
-ignore hidden files during processing.
+The application currently does not ignore hidden files and directories. We could add a parameter to
+allow it to ignore hidden files during processing.
