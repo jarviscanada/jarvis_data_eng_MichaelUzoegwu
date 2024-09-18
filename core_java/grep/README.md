@@ -1,10 +1,10 @@
 # Introduction
 
-This project is a command-line tool for searching files and directories using regular expressions,
-similar to the Unix `grep` utility. It also features an implementation that leverages Lambda
-Expressions and Streams to optimize memory usage. Additionally, the application is dockerized for
-simplified deployment and usage. The project explores OOP and core Java concepts and utilizes
-Java's `Pattern` class for regex matching.
+This project is a command-line tool built with Java for searching files and directories using
+regular expressions, similar to the Unix `grep` utility. It also features an implementation that
+leverages Lambda Expressions and Streams to optimize memory usage. Additionally, the application is
+dockerized for simplified deployment and usage. The project explores OOP and core Java concepts and
+utilizes Java's `Pattern` class for regex matching.
 
 # Quick Start
 
