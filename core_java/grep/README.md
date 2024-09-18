@@ -31,7 +31,7 @@ __output file__ is set to `log/grep.out`.*
 mvn clean package
 
 # Build docker image
-docker build -t <image-name>
+docker build -t <image-name> .
 
 # Create and execute container
 docker run --rm -v `pwd`/data:/data -v `pwd`/log:/log <image-name> <regular-expression> /data /log/grep.out <--stream>
