@@ -4,11 +4,11 @@ I’m a Software Developer and recent Computer Science graduate with 16 months o
 
 ## Skills
 
-**Proficient:** JavaScript / TypeScript, Angular, React, Python, HTML/CSS, Node.js, Git
+**Proficient:** Java, PostgreSQL, JavaScript/TypeScript, Angular, React, Python, Git, Node.js, HTML/CSS
 
-**Competent:** Java, PostgreSQL, Firebase, AWS, C++, Express.js, MongoDB, Linux/Bash
+**Competent:** AWS, Linux/Bash, Firebase, C++, Express.js, MongoDB, Selenium
 
-**Familiar:** C#, Qt, Selenium, WebPack, OpenGL, Pandas, Numpy
+**Familiar:** C#, Qt, WebPack, OpenGL, Pandas, Numpy
 
 ## Jarvis Projects
 

@@ -12,28 +12,28 @@ summary: "I’m a Software Developer and recent Computer Science graduate with 1
 skills:
   # At least 5 skills
   proficient:
-    - JavaScript / TypeScript
+    - Java
+    - PostgreSQL
+    - JavaScript/TypeScript
     - Angular
     - React
     - Python
-    - HTML/CSS
-    - Node.js
     - Git
+    - Node.js
+    - HTML/CSS
   # At least 5 skills
   competent:
-    - Java
-    - PostgreSQL
-    - Firebase
     - AWS
+    - Linux/Bash
+    - Firebase
     - C++
     - Express.js
     - MongoDB
-    - Linux/Bash
+    - Selenium
   # At least 5 skills
   familiar:
     - C#
     - Qt
-    - Selenium
     - WebPack
     - OpenGL
     - Pandas

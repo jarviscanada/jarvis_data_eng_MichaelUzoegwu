@@ -104,32 +104,32 @@
   ],
   "skills": {
     "competent": [
-      "Java",
-      "PostgreSQL",
-      "Firebase",
       "AWS",
+      "Linux/Bash",
+      "Firebase",
       "C++",
       "Express.js",
       "MongoDB",
-      "Linux/Bash"
+      "Selenium"
     ],
     "familiar": [
       "C#",
       "Qt",
-      "Selenium",
       "WebPack",
       "OpenGL",
       "Pandas",
       "Numpy"
     ],
     "proficient": [
-      "JavaScript / TypeScript",
+      "Java",
+      "PostgreSQL",
+      "JavaScript/TypeScript",
       "Angular",
       "React",
       "Python",
-      "HTML/CSS",
+      "Git",
       "Node.js",
-      "Git"
+      "HTML/CSS"
     ]
   },
   "summary": "I’m a Software Developer and recent Computer Science graduate with 16 months of internship experience in various fields, including web and desktop application development and quality assurance. During my teenage years, I immersed myself in coding by developing games using C# and Unity in my spare time. Attending university and working in the field broadened my horizons and helped me develop a broader passion for using software to create meaningful user experiences. Building on this experience, I’m excited to leverage my skills to contribute to impactful projects."
