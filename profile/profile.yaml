@@ -46,12 +46,13 @@ jarvis_projects:
     # The project description allows hiring managers to understand your project and technologies you used(e.g. programming languages, libraries, algorithms, hardware, tools, etc.).
     # The project description must start with an action verb (https://bit.ly/3guO98u)
     description: Enabled the Linux Cluster Administration (LCA) team to collect and store hardware specifications and system usage data of a Rocky Linux cluster of 10 nodes. This data was gathered using Bash scripts and persisted in a PostgreSQL database running within a Docker container.
-#  - name: "Core Java Apps"
-#    git_url: "/core_java"
-#    description:
-#      - "Twitter App: Curabitur laoreet tristique leo, eget suscipit nisi. Sed in sodales ex. Maecenas vitae tincidunt dui, et eleifend quam."
-#      - "JDBC App: Curabitur laoreet tristique leo, eget suscipit nisi. Sed in sodales ex. Maecenas vitae tincidunt dui, et eleifend quam."
-#      - "Grep App: Curabitur laoreet tristique leo, eget suscipit nisi. Sed in sodales ex. Maecenas vitae tincidunt dui, et eleifend quam."
+  - name: "Core Java Apps"
+    git_url: "/core_java"
+    description:
+      - "Grep App: Developed a Java application for searching files and directories using regular expressions, akin to Unix grep. The application was dockerized for simplified deployment."
+      - "Twitter App: TBD"
+      - "JDBC App: TBD"
+     
 #  - name: "Springboot App"
 #    git_url: "/springboot"
 #    description: ""
@@ -96,7 +97,7 @@ professional_experience:
     company: "Jarvis"
     duration: "2024-Present"
     # The project description must start with an action verb (https://bit.ly/3guO98u)
-    description: "Worked on hands-on projects in an Agile environment. Created a computer monitoring agent for a Linux cluster using Bash scripts and a Docker-contained PostgreSQL database. Followed by a learning activity delving deeper into SQL concepts."
+    description: "Worked on hands-on projects in an Agile environment, including creating a computer monitoring agent for a Linux cluster using Bash scripts and a Docker-contained PostgreSQL database. Also developed a Java application for searching files and directories using regular expressions, akin to Unix grep."
   - title: "Software Engineer Intern"
     company: "SurveyMonkey"
     duration: "2022-2022"

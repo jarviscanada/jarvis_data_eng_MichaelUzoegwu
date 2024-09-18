@@ -17,6 +17,12 @@ Project source code: [https://github.com/jarviscanada/jarvis_data_eng_MichaelUzo
 
 **Cluster Monitor** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_MichaelUzoegwu/tree/master/linux_sql)]: Enabled the Linux Cluster Administration (LCA) team to collect and store hardware specifications and system usage data of a Rocky Linux cluster of 10 nodes. This data was gathered using Bash scripts and persisted in a PostgreSQL database running within a Docker container.
 
+**Core Java Apps** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_MichaelUzoegwu/tree/master/core_java)]:
+      
+  - Grep App: Developed a Java application for searching files and directories using regular expressions, akin to Unix grep. The application was dockerized for simplified deployment.
+  - Twitter App: TBD
+  - JDBC App: TBD
+
 
 ## Highlighted Projects
 **MyResume** [[GitHub](https://github.com/micuzo/resume-editor)]: Developed an online resume builder using React and Firebase to facilitate the creation of my resumes as PDFs. The idea was born out of a need to ensure the visual consistency of my customized resume template across content-differing versions. Firebase was used to implement user authentication and resume storage, allowing different users to easily manage multiple versions of their resumes. I used this application exclusively for over two years to create resumes, which contributed to securing multiple internships.
@@ -28,7 +34,7 @@ Project source code: [https://github.com/jarviscanada/jarvis_data_eng_MichaelUzo
 
 ## Professional Experiences
 
-**Software Developer, Jarvis (2024-Present)**: Worked on hands-on projects in an Agile environment. Created a computer monitoring agent for a Linux cluster using Bash scripts and a Docker-contained PostgreSQL database. Followed by a learning activity delving deeper into SQL concepts.
+**Software Developer, Jarvis (2024-Present)**: Worked on hands-on projects in an Agile environment, including creating a computer monitoring agent for a Linux cluster using Bash scripts and a Docker-contained PostgreSQL database. Also developed a Java application for searching files and directories using regular expressions, akin to Unix grep.
 
 **Software Engineer Intern, SurveyMonkey (2022-2022)**: Performed A/B tests on 100,000+ users by making experimental changes to web pages built with React and JavaScript. I also designed and developed a Chrome extension to streamline access to technical details that were buried and spread across browser developer tools. The extension was built using TypeScript and the Chrome Extensions API, with Webpack used for file bundling.
 

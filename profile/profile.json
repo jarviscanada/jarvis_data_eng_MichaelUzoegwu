@@ -41,6 +41,15 @@
       "description": "Enabled the Linux Cluster Administration (LCA) team to collect and store hardware specifications and system usage data of a Rocky Linux cluster of 10 nodes. This data was gathered using Bash scripts and persisted in a PostgreSQL database running within a Docker container.",
       "git_url": "/linux_sql",
       "name": "Cluster Monitor"
+    },
+    {
+      "description": [
+        "Grep App: Developed a Java application for searching files and directories using regular expressions, akin to Unix grep. The application was dockerized for simplified deployment.",
+        "Twitter App: TBD",
+        "JDBC App: TBD"
+      ],
+      "git_url": "/core_java",
+      "name": "Core Java Apps"
     }
   ],
   "name": "Michael Uzoegwu",
@@ -64,7 +73,7 @@
   "professional_experience": [
     {
       "company": "Jarvis",
-      "description": "Worked on hands-on projects in an Agile environment. Created a computer monitoring agent for a Linux cluster using Bash scripts and a Docker-contained PostgreSQL database. Followed by a learning activity delving deeper into SQL concepts.",
+      "description": "Worked on hands-on projects in an Agile environment, including creating a computer monitoring agent for a Linux cluster using Bash scripts and a Docker-contained PostgreSQL database. Also developed a Java application for searching files and directories using regular expressions, akin to Unix grep.",
       "duration": "2024-Present",
       "title": "Software Developer"
     },
