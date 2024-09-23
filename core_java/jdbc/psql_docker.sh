@@ -4,9 +4,9 @@
 cmd=$1
 db_username=$2
 db_password=$3
-volume_name=$4
 
 container_name=jdbc-psql
+volume_name=pgdata-jdbc
 
 sudo systemctl status docker > /dev/null || sudo systemctl start docker
 
