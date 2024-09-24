@@ -15,12 +15,25 @@ public class JDBCExecutor {
     );
     try {
       Connection connection = dcm.getConnection();
-      Statement statement = connection.createStatement();
-      ResultSet resultSet = statement.executeQuery("SELECT COUNT(*) FROM CUSTOMER");
+      CustomerDAO customerDAO = new CustomerDAO(connection);
+      Customer customer = new Customer();
+      customer.setFirstName("Marcus");
+      customer.setLastName("Rashford");
+      customer.setEmail("mr10@utd.co.uk");
+      customer.setAddress("Old Trafford");
+      customer.setCity("Mancheseter");
+      customer.setState("North");
+      customer.setPhone("123 456-789");
+      customer.setZipCode("991183");
 
-      while(resultSet.next()){
-        System.out.println(resultSet.getInt(1));
-      }
+      Customer dbCustomer = customerDAO.create(customer);
+      System.out.println(dbCustomer);
+      dbCustomer = customerDAO.findById(dbCustomer.getId());
+      System.out.println(dbCustomer);
+      dbCustomer.setEmail("marcus10@utd.co.uk");
+      dbCustomer = customerDAO.update(dbCustomer);
+      System.out.println(dbCustomer);
+      customerDAO.delete(dbCustomer.getId());
     } catch (SQLException e) {
       e.printStackTrace();
     }
