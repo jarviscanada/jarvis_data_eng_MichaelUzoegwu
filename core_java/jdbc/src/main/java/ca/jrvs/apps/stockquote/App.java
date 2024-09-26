@@ -1,7 +1,5 @@
 package ca.jrvs.apps.stockquote;
 
-import ca.jrvs.apps.stockquote.dao.QuoteHttpHelper;
-
 public class App {
 
   private static String apiKey;
@@ -15,7 +13,8 @@ public class App {
 
     apiKey = args[0];
     QuoteHttpHelper helper = new QuoteHttpHelper();
-    helper.fetchQuoteInfo("AAPL");
+    Quote quote = helper.fetchQuoteInfo("AAPL");
+    System.out.println(quote);
   }
 
   public static String getApiKey() {
