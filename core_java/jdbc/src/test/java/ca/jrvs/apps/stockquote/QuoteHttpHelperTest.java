@@ -8,9 +8,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @RunWith(MockitoJUnitRunner.class)
 public class QuoteHttpHelperTest {
@@ -54,7 +52,7 @@ public class QuoteHttpHelperTest {
     assertEquals("Comparing highest price", 228.5, aaplQuote.getHigh(), delta);
     assertEquals("Comparing lowest price", 225.41, aaplQuote.getLow(), delta);
     assertEquals("Comparing price", 227.52, aaplQuote.getPrice(), delta);
-    assertEquals("Comparing volume", 36358772, aaplQuote.getVolume(), delta);
+    assertEquals("Comparing volume", 36358772, aaplQuote.getVolume());
 
     // Compare dates
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
