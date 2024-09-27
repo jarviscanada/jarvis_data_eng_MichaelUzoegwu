@@ -3,6 +3,7 @@ package ca.jrvs.apps.stockquote;
 import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
 
+import ca.jrvs.apps.stockquote.dto.Quote;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Spy;

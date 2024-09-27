@@ -1,13 +1,17 @@
 package ca.jrvs.apps.stockquote.dao;
 
-import ca.jrvs.apps.stockquote.Position;
+import ca.jrvs.apps.stockquote.dto.Position;
 
 import java.sql.Connection;
 import java.util.Optional;
 
-public class PositionDao implements CrudDao<Position, String> {
+public class PositionDao extends Dao implements CrudDao<Position, String> {
 
-  private Connection c;
+  private Connection connection;
+
+  public PositionDao(Connection connection) {
+    super(connection);
+  }
 
   @Override
   public Position save(Position entity) throws IllegalArgumentException {
