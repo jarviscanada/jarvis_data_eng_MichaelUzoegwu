@@ -3,7 +3,7 @@ package ca.jrvs.apps.stockquote;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.sql.Timestamp;
-import java.util.Date;
+import java.sql.Date;
 
 public class Quote {
 
