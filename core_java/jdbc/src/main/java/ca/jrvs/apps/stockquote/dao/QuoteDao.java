@@ -1,6 +1,6 @@
 package ca.jrvs.apps.stockquote.dao;
 
-import ca.jrvs.apps.stockquote.Quote;
+import ca.jrvs.apps.stockquote.dto.Quote;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,7 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class QuoteDao extends Dao implements CrudDao<Quote, String> {
 
