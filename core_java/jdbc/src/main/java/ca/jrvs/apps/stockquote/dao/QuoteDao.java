@@ -101,6 +101,10 @@ public class QuoteDao extends Dao implements CrudDao<Quote, String> {
 
   @Override
   public void deleteById(String symbol) throws IllegalArgumentException {
+    if (symbol == null) {
+      throw new IllegalArgumentException("Symbol is null");
+    }
+    
     useStatement(DELETE_BY_ID, (PreparedStatement statement) -> {
       statement.setString(1, symbol);
       statement.execute();
