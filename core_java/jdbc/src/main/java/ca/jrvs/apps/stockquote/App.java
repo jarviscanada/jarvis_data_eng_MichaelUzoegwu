@@ -18,18 +18,14 @@ public class App {
     if (args.length < 1) {
       System.out.println("Incorrect usage, missing API-Key parameter.");
     } else if (args.length > 1) {
-      System.out.println("Incorrect usage, too many parameters.");
+      System.out.println("Incorrect usage, too many arguments.");
     }
 
-    // Connect to DB
-    final String url = "jdbc:postgresql://%s:%s/%s".formatted("localhost", "5433", "stock_quote");
-    Properties props = new Properties();
-    props.setProperty("user", "postgres");
-    props.setProperty("password", "password");
+    apiKey = args[0];
 
-    try (Connection connection = DriverManager.getConnection(url, props)) {
+    // Connect to DB
+    try (Connection connection = DBConnector.getNewConnection()) {
       // Get Quote via API
-      apiKey = args[0];
       QuoteHttpHelper helper = new QuoteHttpHelper();
       String[] stockSymbols = {
               "AAPL",  // Apple Inc.
@@ -71,10 +67,10 @@ public class App {
 
 //      pd.deleteById("MSFT");
 
-      pd.deleteAll();
-
-      Iterable<Position> allPos = pd.findAll();
-      allPos.forEach(System.out::println);
+//      pd.deleteAll();
+//
+//      Iterable<Position> allPos = pd.findAll();
+//      allPos.forEach(System.out::println);
 
     } catch (SQLException e) {
       e.printStackTrace();
