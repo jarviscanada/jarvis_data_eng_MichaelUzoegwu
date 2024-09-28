@@ -29,7 +29,7 @@ Project source code: [https://github.com/jarviscanada/jarvis_data_eng_MichaelUzo
 
 **Last Resort**: Worked as part of a team of three on a 2D platformer-shooter game built with OpenGL and C++, where my main responsibilities were centered around interactions between game entities and the environment. I developed terrain rendering from level data stored in CSV files and implemented an efficient method for detecting collisions between game entities and terrain. Additionally, I applied Dijkstra's pathfinding algorithm to determine optimal movement for enemy AI agents.
 
-**MulBot** [[GitHub](https://github.com/micuzo/mutd-lineup)]: Created an X (formerly Twitter) bot with Python to tweet team lineups of the Manchester United soccer team in a more user-friendly format. The bot retrieves game start times and team lineups, ordered by player positions (instead of shirt numbers), through the API-Football. The start times are used to dynamically set a cron job that triggers the bot to tweet. The application was deployed on a remote Linux machine via DigitalOcean.
+**MulBot** [[GitHub](https://github.com/micuzo/mutd-lineup)]: Created an X (formerly Twitter) bot with Python to tweet team lineups of the Manchester United soccer team in a more user-friendly format. The bot retrieves game start times and team lineups, ordered by player positions (instead of shirt numbers), through the API-Football API. The start times are used to dynamically set a cron job that triggers the bot to tweet. The application was deployed on a remote Linux machine via DigitalOcean.
 
 
 ## Professional Experiences
