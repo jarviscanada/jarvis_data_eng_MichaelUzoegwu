@@ -2,15 +2,9 @@ package ca.jrvs.apps.stockquote.dto;
 
 public class Position {
 
-  private final String ticker; //id
-  private final int numOfShares;
-  private final double valuePaid; //total amount paid for shares
-
-  public Position(String ticker, int numOfShares, double valuePaid) {
-    this.ticker = ticker;
-    this.numOfShares = numOfShares;
-    this.valuePaid = valuePaid;
-  }
+  private String ticker; //id
+  private int numOfShares;
+  private double valuePaid; //total amount paid for shares
 
   @Override
   public String toString() {
@@ -19,5 +13,29 @@ public class Position {
             ", numOfShares=" + numOfShares +
             ", valuePaid=" + valuePaid +
             '}';
+  }
+
+  public String getTicker() {
+    return ticker;
+  }
+
+  public void setTicker(String ticker) {
+    this.ticker = ticker;
+  }
+
+  public int getNumOfShares() {
+    return numOfShares;
+  }
+
+  public void setNumOfShares(int numOfShares) {
+    this.numOfShares = numOfShares;
+  }
+
+  public double getValuePaid() {
+    return valuePaid;
+  }
+
+  public void setValuePaid(double valuePaid) {
+    this.valuePaid = valuePaid;
   }
 }

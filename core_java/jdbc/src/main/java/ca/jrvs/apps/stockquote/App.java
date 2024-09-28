@@ -1,6 +1,8 @@
 package ca.jrvs.apps.stockquote;
 
+import ca.jrvs.apps.stockquote.dao.PositionDao;
 import ca.jrvs.apps.stockquote.dao.QuoteDao;
+import ca.jrvs.apps.stockquote.dto.Position;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -45,11 +47,11 @@ public class App {
       QuoteDao qd = new QuoteDao(connection);
 
       //Pop DB
-      for (int i = 0; i < 5; i++) {
-        qd.save(helper.fetchQuoteInfo(stockSymbols[i]));
-      }
+//      for (int i = 0; i < 5; i++) {
+//        qd.save(helper.fetchQuoteInfo(stockSymbols[i]));
+//      }
 
-      // DAO
+      // DAO -- Quote
       //qd.deleteAll();
       //qd.deleteById("AAPL");
       //qd.save(quote);
@@ -57,6 +59,23 @@ public class App {
       //System.out.println(quote);
       //Iterable<Quote> quotes = qd.findAll();
       //quotes.forEach(System.out::println);
+
+
+      PositionDao pd = new PositionDao(connection);
+
+//      Position myPos = new Position();
+//      myPos.setTicker("AMZN");
+//      myPos.setNumOfShares(80);
+//      myPos.setValuePaid(70);
+//      pd.save(myPos);
+
+//      pd.deleteById("MSFT");
+
+      pd.deleteAll();
+
+      Iterable<Position> allPos = pd.findAll();
+      allPos.forEach(System.out::println);
+
     } catch (SQLException e) {
       e.printStackTrace();
     }
