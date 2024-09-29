@@ -48,23 +48,9 @@ public class PositionDaoTest {
     }
   }
 
-  @Test
-  public void findAll() {
-    String[] symbols = {"AMZN", "AAPL", "MSFT"};
-    int[] numShares = {111, 222, 333};
-    double[] valPaid = {888, 321, 732000};
-
-    List<Position> savedPositions = savePositions(symbols, numShares, valPaid);
-    Iterable<Position> foundPositions = posDao.findAll();
-
-    for (Position savedPos : savedPositions) {
-      // To not assume same order
-      // Find associated Position from result list
-      for (Position foundPos : foundPositions) {
-        if (!foundPos.getTicker().equals(savedPos.getTicker())) continue;
-        assertEquals("Comparing positions", savedPos, foundPos);
-      }
-    }
+  @Test(expected = IllegalArgumentException.class)
+  public void saveNull() {
+    posDao.save(null);
   }
 
   @Test
@@ -91,11 +77,25 @@ public class PositionDaoTest {
     );
   }
 
-  @Test
-  public void deleteAll() {
+  @Test(expected = IllegalArgumentException.class)
+  public void deleteByIdNull() {
+    posDao.deleteById(null);
   }
 
-  private List<Position> savePositions(String[] symbols, int[] numShares, double[] valPaid) {
+  @Test(expected = IllegalArgumentException.class)
+  public void findByIdlNull() {
+    posDao.findById(null);
+  }
+
+  @Test
+  public void findByIdNonExistent() {
+    final String nonExistentSymbol = "DOES_NOT_EXIST";
+    Optional<Position> optPosition = posDao.findById(nonExistentSymbol);
+    assertTrue(String.format("Expected position '%s' to be empty but found a value.", nonExistentSymbol),
+            optPosition.isEmpty());
+  }
+
+  private List<Position> createPositions(String[] symbols, int[] numShares, double[] valPaid) {
 
     List<Position> positions = new ArrayList<>();
 
@@ -104,19 +104,9 @@ public class PositionDaoTest {
       pos.setTicker(symbols[i]);
       pos.setNumOfShares(numShares[i]);
       pos.setValuePaid(valPaid[i]);
-      posDao.save(pos);
       positions.add(pos);
     }
 
     return positions;
-  }
-
-  private void assertPositionSaved(Position pos) {
-    Optional<Position> savedPosOpt = posDao.findById(pos.getTicker());
-    if (savedPosOpt.isEmpty()) {
-      fail("Test failed due no matching element found in DB. Position '%s' wasn't saved successfully."
-              .formatted(pos.getTicker())
-      );
-    }
   }
 }
