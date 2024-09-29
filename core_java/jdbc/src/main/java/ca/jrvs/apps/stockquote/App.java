@@ -2,13 +2,9 @@ package ca.jrvs.apps.stockquote;
 
 import ca.jrvs.apps.stockquote.dao.PositionDao;
 import ca.jrvs.apps.stockquote.dao.QuoteDao;
-import ca.jrvs.apps.stockquote.dto.Position;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.Properties;
 
 public class App {
 
@@ -24,7 +20,7 @@ public class App {
     apiKey = args[0];
 
     // Connect to DB
-    try (Connection connection = DBConnector.getNewConnection()) {
+    try (Connection connection = DBConnector.getConnection()) {
       // Get Quote via API
       QuoteHttpHelper helper = new QuoteHttpHelper();
       String[] stockSymbols = {

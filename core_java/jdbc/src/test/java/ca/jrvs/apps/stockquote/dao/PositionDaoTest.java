@@ -15,7 +15,7 @@ public class PositionDaoTest {
 
   @Before
   public void setUp() throws Exception {
-    posDao = new PositionDao(DBConnector.getNewConnection());
+    posDao = new PositionDao(DBConnector.getConnection());
   }
 
   /**
@@ -39,6 +39,7 @@ public class PositionDaoTest {
       posDao.save(pos);
 
       Optional<Position> savedPosOpt = posDao.findById(pos.getTicker());
+      //TODO: change to assertTrue
       if (savedPosOpt.isEmpty()) {
         fail("Test failed due no matching element found in DB. Position '%s' wasn't saved successfully."
                 .formatted(pos.getTicker())
