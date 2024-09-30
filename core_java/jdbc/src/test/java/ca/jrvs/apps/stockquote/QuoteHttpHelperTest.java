@@ -4,6 +4,8 @@ import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
 
 import ca.jrvs.apps.stockquote.dto.Quote;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Spy;
@@ -14,8 +16,13 @@ import java.text.SimpleDateFormat;
 @RunWith(MockitoJUnitRunner.class)
 public class QuoteHttpHelperTest {
 
-  @Spy
-  private QuoteHttpHelper httpHelper = new QuoteHttpHelper();
+  private static QuoteHttpHelper httpHelper;
+
+  @BeforeClass
+  public static void setupClass() {
+    httpHelper = new QuoteHttpHelper("");
+    httpHelper = spy(httpHelper);
+  }
 
   @Test(expected = IllegalArgumentException.class)
   public void fetchQuoteInfoInvalidSymbol() {

@@ -14,8 +14,12 @@ import java.sql.Timestamp;
 
 public class QuoteHttpHelper {
 
-  private final String apiKey = App.getApiKey();
+  private final String apiKey;
   private final OkHttpClient client = new OkHttpClient();
+
+  public QuoteHttpHelper(String apiKey) {
+    this.apiKey = apiKey;
+  }
 
   /**
    * Fetch latest quote data from Alpha Vantage endpoint
