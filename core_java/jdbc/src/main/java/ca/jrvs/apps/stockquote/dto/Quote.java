@@ -1,9 +1,11 @@
 package ca.jrvs.apps.stockquote.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.sql.Timestamp;
 import java.sql.Date;
+import java.util.Calendar;
 import java.util.Objects;
 
 public class Quote {
@@ -24,7 +26,7 @@ public class Quote {
 
   @JsonProperty("06. volume")
   private int volume;
-
+  
   @JsonProperty("07. latest trading day")
   private Date latestTradingDay;
 
@@ -92,7 +94,16 @@ public class Quote {
   }
 
   public void setLatestTradingDay(Date latestTradingDay) {
-    this.latestTradingDay = latestTradingDay;
+    // Setting date to not include time information.
+    // This ensures consistency and avoids issues with time zone differences in the database.
+    // Without this, dates might be stored with unintended time components, causing discrepancies.
+    Calendar cal = Calendar.getInstance();
+    cal.setTime(latestTradingDay);
+    cal.set(Calendar.HOUR_OF_DAY, 0);
+    cal.set(Calendar.MINUTE, 0);
+    cal.set(Calendar.SECOND, 0);
+    cal.set(Calendar.MILLISECOND, 0);
+    this.latestTradingDay = new Date(cal.getTimeInMillis());
   }
 
   public double getPreviousClose() {
@@ -148,18 +159,21 @@ public class Quote {
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
+
+    final double TOLERANCE = 1e-9;
     Quote quote = (Quote) o;
-    return Double.compare(quote.open, open) == 0 &&
-            Double.compare(quote.high, high) == 0 &&
-            Double.compare(quote.low, low) == 0 &&
-            Double.compare(quote.price, price) == 0 &&
+
+    return Math.abs(quote.open - open) < TOLERANCE &&
+            Math.abs(quote.high - high) < TOLERANCE &&
+            Math.abs(quote.low - low) < TOLERANCE &&
+            Math.abs(quote.price - price) < TOLERANCE &&
             volume == quote.volume &&
-            Double.compare(quote.previousClose, previousClose) == 0
-            && Double.compare(quote.change, change) == 0
-            && Objects.equals(ticker, quote.ticker)
-            && Objects.equals(latestTradingDay, quote.latestTradingDay)
-            && Objects.equals(changePercent, quote.changePercent)
-            && Objects.equals(timestamp, quote.timestamp);
+            Math.abs(quote.previousClose - previousClose) < TOLERANCE &&
+            Math.abs(quote.change - change) < TOLERANCE &&
+            Objects.equals(ticker, quote.ticker) &&
+            Objects.equals(latestTradingDay, quote.latestTradingDay) &&
+            Objects.equals(changePercent, quote.changePercent) &&
+            Objects.equals(timestamp, quote.timestamp);
   }
 
   @Override

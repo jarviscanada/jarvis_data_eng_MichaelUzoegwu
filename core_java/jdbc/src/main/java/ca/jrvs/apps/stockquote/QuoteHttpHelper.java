@@ -8,6 +8,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.sql.Timestamp;
 
@@ -35,6 +36,9 @@ public class QuoteHttpHelper {
     try {
       // Covert to Quote object
       ObjectMapper mapper = new ObjectMapper();
+      SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+      mapper.setDateFormat(df);
+
       JsonNode quoteNode = mapper.readTree(body).path("Global Quote");
       Quote quote = mapper.readValue(quoteNode.toString(), Quote.class);
       quote.setTimestamp(Timestamp.from(Instant.now()));

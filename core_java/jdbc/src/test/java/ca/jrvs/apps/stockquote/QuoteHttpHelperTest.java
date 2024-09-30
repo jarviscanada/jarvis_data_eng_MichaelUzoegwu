@@ -57,11 +57,10 @@ public class QuoteHttpHelperTest {
 
     // Compare dates
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    // TODO: see why trading day is differing by one day
     assertEquals("Comparing latest trading day", "2024-09-26", dateFormat.format(aaplQuote.getLatestTradingDay()));
 
     assertEquals("Compare previous close", 226.37, aaplQuote.getPreviousClose(), delta);
     assertEquals("Compare change", 1.15, aaplQuote.getChange(), delta);
-    assertEquals("Compare change %", "0.508%", aaplQuote.getChangePercent());
+    assertEquals("Compare change %", "0.5080%", aaplQuote.getChangePercent());
   }
 }
