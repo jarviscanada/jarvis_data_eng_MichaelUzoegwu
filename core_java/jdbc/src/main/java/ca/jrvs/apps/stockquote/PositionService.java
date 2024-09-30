@@ -9,8 +9,8 @@ import java.util.Optional;
 public class PositionService {
   final private PositionDao dao;
 
-  public PositionService(Connection connection) {
-    dao = new PositionDao(connection);
+  public PositionService(Connection connection, PositionDao dao) {
+    this.dao = dao;
   }
 
   /**
