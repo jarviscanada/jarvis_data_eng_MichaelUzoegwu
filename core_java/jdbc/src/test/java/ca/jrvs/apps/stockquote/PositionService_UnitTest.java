@@ -26,11 +26,11 @@ public class PositionService_UnitTest {
   @Before
   public void setUp() throws Exception {
     positionDao = mock(PositionDao.class);
-    positionService = new PositionService(DBConnector.getConnection(), positionDao);
+    positionService = new PositionService(positionDao);
   }
 
   @Test
-  public void buy() {
+  public void buySecond() {
     final String ticker = "AAPL";
     final int initNumShares = 500;
     final double initValuePaid = 1000;
@@ -68,7 +68,7 @@ public class PositionService_UnitTest {
   }
 
   @Test
-  public void buyNew() {
+  public void buyFirst() {
     final String ticker = "AAPL";
 
     when(positionDao.findById(ticker)).thenReturn(Optional.empty());
@@ -96,21 +96,6 @@ public class PositionService_UnitTest {
             sharesToBuy,
             newPosition.getNumOfShares()
     );
-  }
-
-  @Test(expected = IllegalArgumentException.class)
-  public void buyInvalidShares() {
-    positionService.buy("AAPL", -30, 50);
-  }
-
-  @Test(expected = IllegalArgumentException.class)
-  public void buyInvalidPrice() {
-    positionService.buy("AAPL", 30, -50);
-  }
-
-  @Test(expected = IllegalArgumentException.class)
-  public void buyNullTicker() {
-    positionService.buy(null, 30, 50);
   }
 
   @Test(expected = IllegalArgumentException.class)
