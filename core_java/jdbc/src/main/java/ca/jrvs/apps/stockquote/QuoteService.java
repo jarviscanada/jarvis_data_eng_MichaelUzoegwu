@@ -2,6 +2,7 @@ package ca.jrvs.apps.stockquote;
 
 import ca.jrvs.apps.stockquote.dao.QuoteDao;
 import ca.jrvs.apps.stockquote.dto.Quote;
+import ca.jrvs.apps.stockquote.util.QuoteHttpHelper;
 
 import java.util.Optional;
 

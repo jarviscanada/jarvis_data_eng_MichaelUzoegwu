@@ -4,11 +4,10 @@ import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
 
 import ca.jrvs.apps.stockquote.dto.Quote;
-import org.junit.Before;
+import ca.jrvs.apps.stockquote.util.QuoteHttpHelper;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.text.SimpleDateFormat;

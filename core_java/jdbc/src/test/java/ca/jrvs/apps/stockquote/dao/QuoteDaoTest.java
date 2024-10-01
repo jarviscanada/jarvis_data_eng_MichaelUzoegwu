@@ -2,7 +2,7 @@ package ca.jrvs.apps.stockquote.dao;
 
 import static org.junit.Assert.*;
 
-import ca.jrvs.apps.stockquote.DBConnector;
+import ca.jrvs.apps.stockquote.util.DBConnector;
 import ca.jrvs.apps.stockquote.dto.Quote;
 import org.junit.Before;
 import org.junit.Test;

@@ -1,7 +1,7 @@
 package ca.jrvs.apps.stockquote;
 
 import ca.jrvs.apps.stockquote.dto.Quote;
-import org.junit.Before;
+import ca.jrvs.apps.stockquote.util.QuoteHttpHelper;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
