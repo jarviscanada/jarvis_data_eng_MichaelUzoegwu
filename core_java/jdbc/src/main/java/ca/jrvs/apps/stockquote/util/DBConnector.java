@@ -19,8 +19,6 @@ public class DBConnector {
             AppProperties.get(AppProperties.PropertyNames.DATABASE)
     );
 
-    System.out.println(url);
-
     Properties props = new Properties();
     props.setProperty("user", AppProperties.get(AppProperties.PropertyNames.USERNAME));
     props.setProperty("password", AppProperties.get(AppProperties.PropertyNames.PASSWORD));
