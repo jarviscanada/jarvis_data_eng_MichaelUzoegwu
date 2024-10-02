@@ -1,6 +1,8 @@
 package ca.jrvs.apps.stockquote;
 
+import ca.jrvs.apps.stockquote.dao.QuoteDao;
 import ca.jrvs.apps.stockquote.dto.Quote;
+import ca.jrvs.apps.stockquote.util.DBConnector;
 import ca.jrvs.apps.stockquote.util.QuoteHttpHelper;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,7 +27,7 @@ public class QuoteService_UnitTest {
 
   @Before
   public void setUp() throws Exception {
-    quoteService = new QuoteService(helperMock);
+    quoteService = new QuoteService(helperMock, new QuoteDao(DBConnector.getConnection()));
   }
 
   @Test
@@ -34,7 +36,7 @@ public class QuoteService_UnitTest {
     Quote helperQuote = createQuote(ticker);
     when(helperMock.fetchQuoteInfo(ticker)).thenReturn(helperQuote);
 
-    Optional<Quote> fetchedQuoteOpt = quoteService.fetchQuoteDataFromAPI(ticker);
+    Optional<Quote> fetchedQuoteOpt = quoteService.fetchQuoteData(ticker);
     assertEquals("Expected fetched quote to match quote retrieved from http helper. Instead returned quote was " +
             "different.", helperQuote, fetchedQuoteOpt.orElseThrow()
     );
@@ -47,7 +49,7 @@ public class QuoteService_UnitTest {
             String.format("Could not find any data for provided symbol '%s'", ticker)
     ));
 
-    Optional<Quote> fetchedQuoteOpt = quoteService.fetchQuoteDataFromAPI(ticker);
+    Optional<Quote> fetchedQuoteOpt = quoteService.fetchQuoteData(ticker);
 
     assertTrue("Expected fetched quote to be empty. Instead quote had a value",
             fetchedQuoteOpt.isEmpty());

@@ -3,9 +3,7 @@ package ca.jrvs.apps.stockquote;
 import ca.jrvs.apps.stockquote.dao.PositionDao;
 import ca.jrvs.apps.stockquote.dto.Position;
 import ca.jrvs.apps.stockquote.dto.Quote;
-import ca.jrvs.apps.stockquote.util.DBConnector;
 
-import java.sql.SQLException;
 import java.util.*;
 
 public class StockQuoteController {
@@ -64,7 +62,7 @@ public class StockQuoteController {
   }
 
   private void handleBuyMode(String ticker, int numberOfShares) {
-    Optional<Quote> quote = quoteService.fetchQuoteDataFromAPI(ticker);
+    Optional<Quote> quote = quoteService.fetchQuoteData(ticker);
     if (quote.isEmpty()) {
       System.out.printf("Could not process order. No information found on '%s' symbol.%n", ticker);
       return;
@@ -84,7 +82,7 @@ public class StockQuoteController {
       return;
     }
 
-    Quote quote = quoteService.fetchQuoteDataFromAPI(ticker).orElseThrow();
+    Quote quote = quoteService.fetchQuoteData(ticker).orElseThrow();
 
     positionService.sell(ticker);
     System.out.printf("Successfully processed SELL order of all %d shares of '%s' for $%.2f.%n",
@@ -95,7 +93,7 @@ public class StockQuoteController {
   }
 
   private void handleCheckStock(String ticker) {
-    Optional<Quote> quoteOpt = quoteService.fetchQuoteDataFromAPI(ticker);
+    Optional<Quote> quoteOpt = quoteService.fetchQuoteData(ticker);
     if (quoteOpt.isEmpty()) {
       System.out.printf("Could not process order. No information found on '%s'.", ticker);
       return;
@@ -110,7 +108,7 @@ public class StockQuoteController {
       return;
     }
 
-    Quote quote = quoteService.fetchQuoteDataFromAPI(ticker).orElseThrow();
+    Quote quote = quoteService.fetchQuoteData(ticker).orElseThrow();
     Double relativePrice = positionOpt.get().getNumOfShares() * quote.getPrice() - positionOpt.get().getValuePaid();
 
     printPosition(positionOpt.get(), relativePrice);
@@ -121,7 +119,7 @@ public class StockQuoteController {
     System.out.printf("----------%s----------%n", position.getTicker());
     System.out.printf("Total Number of Shares Owned : %d%n", position.getNumOfShares());
     System.out.printf("Total value paid             : $%.2f%n", position.getValuePaid());
-    System.out.printf("Money made if sell           : %s$%.2f%n", sign, relativePrice);
+    System.out.printf("Money made if sold           : %s$%.2f%n", sign, relativePrice);
     System.out.printf("----------%s----------%n", position.getTicker());
   }
 

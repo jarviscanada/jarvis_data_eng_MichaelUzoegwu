@@ -6,6 +6,8 @@ import ca.jrvs.apps.stockquote.util.AppProperties;
 import ca.jrvs.apps.stockquote.util.DBConnector;
 import ca.jrvs.apps.stockquote.util.QuoteHttpHelper;
 
+import java.sql.Connection;
+
 public class App {
 
   public static void main(String[] args) {
@@ -16,28 +18,28 @@ public class App {
     }
 
     try {
-      PositionDao positionDao = new PositionDao(DBConnector.getConnection());
+      Connection connection = DBConnector.getConnection();
+
+      PositionDao positionDao = new PositionDao(connection);
       PositionService positionService = new PositionService(positionDao);
 
+      QuoteDao quoteDao = new QuoteDao(connection);
       QuoteHttpHelper helper = new QuoteHttpHelper(AppProperties.get(AppProperties.PropertyNames.API_KEY));
-      QuoteService quoteService = new QuoteService(helper);
+      QuoteService quoteService = new QuoteService(helper, quoteDao);
 
       StockQuoteController controller = new StockQuoteController(quoteService, positionService, positionDao);
 
-      String[] testArgsBuyTSLA = {"buy", "AAPL", "300"};
+      String[] testArgsBuyTSLA = {"buy", "TSLA", "300"};
       String[] testArgsSellTSLA = {"sell", "TSLA"};
       String[] testArgsCheckStockTSLA = {"check-stock", "TSLA"};
-      String[] testArgsCheckPositionTSLA = {"check-position", "TSLA"};
+      String[] testArgsCheckPositionTSLA = {"check-position", "AAPL"};
 
-      controller.initClient(testArgsBuyTSLA);
+      //controller.initClient(testArgsBuyTSLA);
       //controller.initClient(testArgsSellTSLA);
       //controller.initClient(testArgsCheckStockTSLA);
-      //controller.initClient(testArgsCheckPositionTSLA);
-
+      controller.initClient(testArgsCheckPositionTSLA);
     } catch (Exception e) {
       e.printStackTrace();
     }
-
-
   }
 }
