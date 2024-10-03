@@ -16,8 +16,6 @@ public class QuoteService {
     this.dao = dao;
   }
 
-  //TODO: Update quote service tests
-
   /**
    * Fetches latest quote data
    *
@@ -30,6 +28,7 @@ public class QuoteService {
     Optional<Quote> dbQuoteOpt = dao.findById(ticker);
     if (dbQuoteOpt.isPresent()) {
       final long dbQuoteTime = dbQuoteOpt.get().getTimestamp().getTime();
+      long x = System.currentTimeMillis() - dbQuoteTime;
       if (System.currentTimeMillis() - dbQuoteTime < QUOTE_TTL) {
         return dbQuoteOpt;
       }
@@ -42,5 +41,9 @@ public class QuoteService {
     } catch (IllegalArgumentException e) {
       return Optional.empty();
     }
+  }
+
+  public long getQUOTE_TTL() {
+    return QUOTE_TTL;
   }
 }
