@@ -1,4 +1,4 @@
-package ca.jrvs.apps.stockquote;
+package ca.jrvs.apps.stockquote.util;
 
 import ca.jrvs.apps.stockquote.dto.Quote;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -55,7 +55,7 @@ public class QuoteHttpHelper {
     return null;
   }
 
-  protected String fetchQuoteJSON(String symbol) {
+  public String fetchQuoteJSON(String symbol) {
     final String url = "https://alpha-vantage.p.rapidapi.com/query?function=GLOBAL_QUOTE&symbol=" + symbol + "&datatype=json";
 
     Request request = new Request.Builder()

@@ -2,6 +2,7 @@ package ca.jrvs.apps.stockquote;
 
 import ca.jrvs.apps.stockquote.dao.PositionDao;
 import ca.jrvs.apps.stockquote.dto.Position;
+import ca.jrvs.apps.stockquote.util.DBConnector;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -1,6 +1,8 @@
 package ca.jrvs.apps.stockquote;
 
+import ca.jrvs.apps.stockquote.dao.QuoteDao;
 import ca.jrvs.apps.stockquote.dto.Quote;
+import ca.jrvs.apps.stockquote.util.QuoteHttpHelper;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,31 +24,73 @@ public class QuoteService_UnitTest {
   @Mock
   QuoteHttpHelper helperMock;
 
+  @Mock
+  QuoteDao quoteDaoMock;
+
   @Before
   public void setUp() throws Exception {
-    quoteService = new QuoteService(helperMock);
+    quoteService = new QuoteService(helperMock, quoteDaoMock);
   }
 
   @Test
-  public void fetchQuoteDataFromAPI() {
+  public void fetchQuoteDataNotInDB() {
     final String ticker = "AAPL";
+
+    when(quoteDaoMock.findById(ticker)).thenReturn(Optional.empty());
+
     Quote helperQuote = createQuote(ticker);
     when(helperMock.fetchQuoteInfo(ticker)).thenReturn(helperQuote);
 
-    Optional<Quote> fetchedQuoteOpt = quoteService.fetchQuoteDataFromAPI(ticker);
+    Optional<Quote> fetchedQuoteOpt = quoteService.fetchQuoteData(ticker);
     assertEquals("Expected fetched quote to match quote retrieved from http helper. Instead returned quote was " +
             "different.", helperQuote, fetchedQuoteOpt.orElseThrow()
     );
   }
 
   @Test
+  public void fetchQuoteDataStaleInDB() {
+    final String ticker = "AAPL";
+
+    Quote staleQuote = createQuote(ticker);
+    staleQuote.setOpen(-100); // Change open to ensure differing quote
+    staleQuote.setTimestamp(new Timestamp(System.currentTimeMillis() - quoteService.getQUOTE_TTL() - 10000));
+    when(quoteDaoMock.findById(ticker)).thenReturn(Optional.of(staleQuote));
+
+    Quote helperQuote = createQuote(ticker);
+    when(helperMock.fetchQuoteInfo(ticker)).thenReturn(helperQuote);
+
+    Optional<Quote> fetchedQuoteOpt = quoteService.fetchQuoteData(ticker);
+    assertEquals("Expected fetched quote to match quote retrieved from http helper. Instead returned quote was " +
+            "different.", helperQuote, fetchedQuoteOpt.orElseThrow()
+    );
+  }
+
+  @Test
+  public void fetchQuoteDataFreshInDB() {
+    final String ticker = "AAPL";
+
+    Quote freshQuote = createQuote(ticker);
+    freshQuote.setOpen(-100); // Change open to ensure differing quote
+    freshQuote.setTimestamp(new Timestamp(System.currentTimeMillis() - quoteService.getQUOTE_TTL() + 10000));
+    when(quoteDaoMock.findById(ticker)).thenReturn(Optional.of(freshQuote));
+
+    Optional<Quote> fetchedQuoteOpt = quoteService.fetchQuoteData(ticker);
+    assertEquals("Expected fetched quote to match quote retrieved from DB. Instead returned quote was " +
+            "different.", freshQuote, fetchedQuoteOpt.orElseThrow()
+    );
+  }
+
+  @Test
   public void fetchQuoteDataFromAPINonExistent() {
     final String ticker = "NON_EXISTENT";
+
+    when(quoteDaoMock.findById(ticker)).thenReturn(Optional.empty());
+
     when(helperMock.fetchQuoteInfo(ticker)).thenThrow(new IllegalArgumentException(
             String.format("Could not find any data for provided symbol '%s'", ticker)
     ));
 
-    Optional<Quote> fetchedQuoteOpt = quoteService.fetchQuoteDataFromAPI(ticker);
+    Optional<Quote> fetchedQuoteOpt = quoteService.fetchQuoteData(ticker);
 
     assertTrue("Expected fetched quote to be empty. Instead quote had a value",
             fetchedQuoteOpt.isEmpty());

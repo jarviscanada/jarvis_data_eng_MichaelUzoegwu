@@ -1,7 +1,9 @@
 package ca.jrvs.apps.stockquote;
 
+import ca.jrvs.apps.stockquote.dao.QuoteDao;
 import ca.jrvs.apps.stockquote.dto.Quote;
-import org.junit.Before;
+import ca.jrvs.apps.stockquote.util.DBConnector;
+import ca.jrvs.apps.stockquote.util.QuoteHttpHelper;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,14 +23,14 @@ public class QuoteService_IntTest {
   public static void setUp() throws Exception {
     final String apiKey = System.getenv("API_KEY");
     helper = new QuoteHttpHelper(apiKey);
-    quoteService = new QuoteService(helper);
+    quoteService = new QuoteService(helper, new QuoteDao((DBConnector.getConnection())));
   }
 
   @Test
   public void fetchQuoteDataFromAPI() {
     final String ticker = "AAPL";
 
-    Optional<Quote> fetchedQuoteOpt = quoteService.fetchQuoteDataFromAPI(ticker);
+    Optional<Quote> fetchedQuoteOpt = quoteService.fetchQuoteData(ticker);
     assertTrue(
             String.format("Expected fetchedQuote '%s' to be present. Instead fetched quote is empty.", ticker),
             fetchedQuoteOpt.isPresent()
@@ -51,7 +53,7 @@ public class QuoteService_IntTest {
   @Test
   public void fetchQuoteDataFromAPINonExistent() {
     final String ticker = "NON_EXISTENT";
-    Optional<Quote> fetchedQuoteOpt = quoteService.fetchQuoteDataFromAPI(ticker);
+    Optional<Quote> fetchedQuoteOpt = quoteService.fetchQuoteData(ticker);
     assertTrue("Expected fetched quote to be empty. Instead quote had a value",
             fetchedQuoteOpt.isEmpty());
   }

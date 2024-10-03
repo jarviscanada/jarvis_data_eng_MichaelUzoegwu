@@ -56,4 +56,8 @@ public class PositionService {
   public void sell(String ticker) throws IllegalArgumentException {
     dao.deleteById(ticker);
   }
+
+  public Optional<Position> getPosition(String ticker) {
+    return dao.findById(ticker);
+  }
 }
