@@ -28,16 +28,7 @@ public class App {
       QuoteService quoteService = new QuoteService(helper, quoteDao);
 
       StockQuoteController controller = new StockQuoteController(quoteService, positionService, positionDao);
-
-      String[] testArgsBuyTSLA = {"buy", "TSLA", "300"};
-      String[] testArgsSellTSLA = {"sell", "TSLA"};
-      String[] testArgsCheckStockTSLA = {"check-stock", "TSLA"};
-      String[] testArgsCheckPositionTSLA = {"check-position", "AAPL"};
-
-      //controller.initClient(testArgsBuyTSLA);
-      //controller.initClient(testArgsSellTSLA);
-      //controller.initClient(testArgsCheckStockTSLA);
-      controller.initClient(testArgsCheckPositionTSLA);
+      controller.initClient(args);
     } catch (Exception e) {
       e.printStackTrace();
     }
