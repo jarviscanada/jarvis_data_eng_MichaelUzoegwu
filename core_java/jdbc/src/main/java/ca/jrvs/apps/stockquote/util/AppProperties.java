@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 
 public class AppProperties {
   private static Properties properties;
-  private final static String propertiesPath = "src/main/java/resources/properties.txt";
+  private final static String propertiesPath = "src/main/resources/properties.txt";
 
   public static class PropertyNames {
     public final static String DB_CLASS = "db-class";
