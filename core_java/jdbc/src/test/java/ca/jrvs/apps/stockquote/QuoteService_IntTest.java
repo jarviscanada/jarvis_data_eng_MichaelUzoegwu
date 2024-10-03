@@ -2,6 +2,7 @@ package ca.jrvs.apps.stockquote;
 
 import ca.jrvs.apps.stockquote.dao.QuoteDao;
 import ca.jrvs.apps.stockquote.dto.Quote;
+import ca.jrvs.apps.stockquote.util.AppProperties;
 import ca.jrvs.apps.stockquote.util.DBConnector;
 import ca.jrvs.apps.stockquote.util.QuoteHttpHelper;
 import org.junit.BeforeClass;
@@ -21,8 +22,7 @@ public class QuoteService_IntTest {
 
   @BeforeClass
   public static void setUp() throws Exception {
-    final String apiKey = System.getenv("API_KEY");
-    helper = new QuoteHttpHelper(apiKey);
+    helper = new QuoteHttpHelper(AppProperties.get(AppProperties.PropertyNames.API_KEY));
     quoteService = new QuoteService(helper, new QuoteDao((DBConnector.getConnection())));
   }
 
