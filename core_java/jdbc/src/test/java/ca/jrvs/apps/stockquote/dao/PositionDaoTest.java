@@ -39,12 +39,10 @@ public class PositionDaoTest {
       posDao.save(pos);
 
       Optional<Position> savedPosOpt = posDao.findById(pos.getTicker());
-      //TODO: change to assertTrue
-      if (savedPosOpt.isEmpty()) {
-        fail("Test failed due no matching element found in DB. Position '%s' wasn't saved successfully."
-                .formatted(pos.getTicker())
-        );
-      }
+
+      assertTrue(String.format("Test failed due no matching element found in DB. Position '%s' wasn't saved " +
+              "successfully.", pos.getTicker()), savedPosOpt.isPresent());
+
       assertEquals("Checking if Positions are equal [%s]".formatted(pos.getTicker()), pos, savedPosOpt.get());
     }
   }

@@ -5,16 +5,21 @@ import ca.jrvs.apps.stockquote.dao.QuoteDao;
 import ca.jrvs.apps.stockquote.util.AppProperties;
 import ca.jrvs.apps.stockquote.util.DBConnector;
 import ca.jrvs.apps.stockquote.util.QuoteHttpHelper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 
 public class App {
 
+  private final static Logger LOGGER = LoggerFactory.getLogger(App.class);
+
   public static void main(String[] args) {
+
     try {
       Class.forName(AppProperties.get(AppProperties.PropertyNames.DB_CLASS));
     } catch (ClassNotFoundException e) {
-      e.printStackTrace();
+      LOGGER.error("Could not load database driver '{}'", AppProperties.PropertyNames.DB_CLASS, e);
     }
 
     try {
@@ -30,7 +35,7 @@ public class App {
       StockQuoteController controller = new StockQuoteController(quoteService, positionService, positionDao);
       controller.initClient(args);
     } catch (Exception e) {
-      e.printStackTrace();
+      LOGGER.error("Something went wrong while running the app.", e);
     }
   }
 }
