@@ -3,10 +3,13 @@ package ca.jrvs.apps.stockquote;
 import ca.jrvs.apps.stockquote.dao.PositionDao;
 import ca.jrvs.apps.stockquote.dto.Position;
 import ca.jrvs.apps.stockquote.dto.Quote;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
 public class StockQuoteController {
+  private final static Logger LOGGER = LoggerFactory.getLogger(StockQuoteController.class);
 
   private final String BUY_MODE = "buy";
   private final String SELL_MODE = "sell";
@@ -46,7 +49,6 @@ public class StockQuoteController {
     final String mode = args[0];
     final String ticker = args[1];
 
-
     switch (mode) {
       case BUY_MODE -> {
         try {
@@ -71,6 +73,8 @@ public class StockQuoteController {
     System.out.printf("Successfully processed BUY order of %d share(s) of '%s' for $%.2f.%n", numberOfShares,
             ticker,
             quote.get().getPrice() * numberOfShares);
+    LOGGER.info("Successfully processed BUY order of {} share(s) of '{}' for ${}.", numberOfShares, ticker,
+            quote.get().getPrice() * numberOfShares);
     System.out.println("Current position:");
     printPosition(position, 0.0);
   }
@@ -78,14 +82,20 @@ public class StockQuoteController {
   private void handleSellMode(String ticker) {
     Optional<Position> positionOpt = positionService.getPosition(ticker);
     if (positionOpt.isEmpty()) {
-      System.out.printf("Could not process order. You do not currently possess any shares in '%s'.", ticker);
+      System.out.printf("Could not process order. You do not currently possess any shares in '%s'.%n", ticker);
+      LOGGER.info("Could not process order. You do not currently possess any shares in {}.", ticker);
       return;
     }
 
     Quote quote = quoteService.fetchQuoteData(ticker).orElseThrow();
 
     positionService.sell(ticker);
-    System.out.printf("Successfully processed SELL order of all %d shares of '%s' for $%.2f.%n",
+    System.out.printf("Successfully processed SELL order of all %d share(s) of '%s' for $%.2f.%n",
+            positionOpt.get().getNumOfShares(),
+            ticker,
+            quote.getPrice() * positionOpt.get().getNumOfShares()
+    );
+    LOGGER.info("Successfully processed SELL order of all {} share(s) of '{}' for ${}.",
             positionOpt.get().getNumOfShares(),
             ticker,
             quote.getPrice() * positionOpt.get().getNumOfShares()
@@ -99,6 +109,7 @@ public class StockQuoteController {
       return;
     }
     printQuote(quoteOpt.get());
+    LOGGER.info("Retrieved and displayed '{}' stock info.", ticker);
   }
 
   private void handleCheckPosition(String ticker) {
@@ -112,6 +123,7 @@ public class StockQuoteController {
     Double relativePrice = positionOpt.get().getNumOfShares() * quote.getPrice() - positionOpt.get().getValuePaid();
 
     printPosition(positionOpt.get(), relativePrice);
+    LOGGER.info("Retrieved and displayed '{}' position info.", ticker);
   }
 
   private void printPosition(Position position, Double relativePrice) {

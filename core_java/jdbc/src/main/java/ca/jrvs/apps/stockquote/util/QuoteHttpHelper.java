@@ -6,6 +6,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -16,6 +18,7 @@ public class QuoteHttpHelper {
 
   private final String apiKey;
   private final OkHttpClient client = new OkHttpClient();
+  private final static Logger LOGGER = LoggerFactory.getLogger(QuoteHttpHelper.class);
 
   public QuoteHttpHelper(String apiKey) {
     this.apiKey = apiKey;
@@ -49,7 +52,7 @@ public class QuoteHttpHelper {
 
       return quote;
     } catch (IOException e) {
-      e.printStackTrace();
+      LOGGER.error("Could not deserialize JSON response for '{}'", symbol, e);
     }
 
     return null;
@@ -65,10 +68,9 @@ public class QuoteHttpHelper {
             .build();
 
     try (Response response = client.newCall(request).execute()) {
-
       return response.body().string();
     } catch (IOException e) {
-      e.printStackTrace(); // TODO: use a logger
+      LOGGER.error("Failed to fetch quote from API", e);
     }
 
     return null;

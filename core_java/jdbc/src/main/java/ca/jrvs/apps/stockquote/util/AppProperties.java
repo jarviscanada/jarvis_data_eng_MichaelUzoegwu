@@ -1,5 +1,8 @@
 package ca.jrvs.apps.stockquote.util;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -8,8 +11,10 @@ import java.util.Properties;
 import java.util.stream.Stream;
 
 public class AppProperties {
+
   private static Properties properties;
-  private final static String propertiesPath = "src/main/java/resources/properties.txt";
+  private final static Logger LOGGER = LoggerFactory.getLogger(AppProperties.class);
+  private final static String propertiesPath = "src/main/resources/properties.txt";
 
   public static class PropertyNames {
     public final static String DB_CLASS = "db-class";
@@ -38,7 +43,7 @@ public class AppProperties {
         }
       });
     } catch (IOException e) {
-      e.printStackTrace();
+      LOGGER.error("Could not read properties from {}", propertiesPath, e);
     }
 
     return props;
