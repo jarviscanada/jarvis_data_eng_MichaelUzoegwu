@@ -1,0 +1,26 @@
+#!/bin/bash
+
+mode=$1
+
+case "$mode" in
+  setup-db)
+    docker run \
+      --name stockapp-db \
+      -d \
+      -v "${2:-$(pwd)/pgdata}":/var/lib/postgresql/data \
+      -p 5433:5432 \
+      micuzo001/stockapp-db:1.0.0
+    ;;
+  run)
+    docker run \
+    --rm \
+    --network host \
+    -v $(pwd)/logs:/usr/local/app/jdbc/logs \
+    micuzo001/stockapp:1.0.0 $2 $3 $4
+    ;;
+  *)
+    echo "Invalid Arguments"
+    echo "Usage: $0 {setup-db|run} [additional arguments]"
+    ;;
+esac
+

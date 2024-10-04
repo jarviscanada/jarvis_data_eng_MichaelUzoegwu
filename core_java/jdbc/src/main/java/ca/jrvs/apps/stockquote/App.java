@@ -33,7 +33,7 @@ public class App {
       QuoteService quoteService = new QuoteService(helper, quoteDao);
 
       StockQuoteController controller = new StockQuoteController(quoteService, positionService, positionDao);
-      controller.initClient(args);
+      controller.initClient();
     } catch (Exception e) {
       LOGGER.error("Something went wrong while running the app.", e);
     }
