@@ -19,8 +19,10 @@ dockerized for straightforward deployment and consistent environments.
 ./stockapp setup-db
 
 # Run application within a container
-./stockapp run
+./stockapp run <alpha-vantage-api-key>
 ```
+
+*Get an API key from [Alpha Vantage](https://rapidapi.com/alphavantage/api/alpha-vantage).*
 
 ---
 
@@ -41,7 +43,8 @@ dockerized for straightforward deployment and consistent environments.
 - `stop-db`: Stops the `stockapp-db` container.
 
 
-- `run`: Runs the stock application container.
+- `run [api_key]`: Runs the stock application container.
+    - Uses [api_key] to make requests to [Alpha Vantage API](https://rapidapi.com/alphavantage/api/alpha-vantage)
     - Maps logs to `./logs` on the host machine.
     - removes container after execution
 
