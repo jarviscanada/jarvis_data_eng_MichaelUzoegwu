@@ -26,10 +26,11 @@ case "$mode" in
     --network host \
     -it \
     -v $(pwd)/logs:/usr/local/app/jdbc/logs \
+    -e STOCK_API_KEY=$2\
     micuzo001/stockapp:1.0.0
     ;;
   *)
     echo "Invalid Arguments"
-    echo "Usage: $0 {setup-db|run} [additional arguments]"
+    echo "Usage: stockapp {setup-db|start-db|stop-db|run} [additional arguments]"
     ;;
 esac

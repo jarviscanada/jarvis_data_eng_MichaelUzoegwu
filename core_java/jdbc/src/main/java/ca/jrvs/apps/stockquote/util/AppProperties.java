@@ -40,6 +40,9 @@ public class AppProperties {
       LOGGER.error("Could not read properties from {}", propertiesPath, e);
     }
 
+    // Add API key from environment
+    props.put(PropertyNames.API_KEY, System.getenv("STOCK_API_KEY"));
+
     return props;
   }
 }
