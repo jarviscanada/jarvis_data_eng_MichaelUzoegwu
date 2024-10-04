@@ -2,6 +2,7 @@ package ca.jrvs.apps.stockquote;
 
 import ca.jrvs.apps.stockquote.dao.QuoteDao;
 import ca.jrvs.apps.stockquote.dto.Quote;
+import ca.jrvs.apps.stockquote.util.AppProperties;
 import ca.jrvs.apps.stockquote.util.DBConnector;
 import ca.jrvs.apps.stockquote.util.QuoteHttpHelper;
 import org.junit.BeforeClass;
@@ -21,8 +22,7 @@ public class QuoteService_IntTest {
 
   @BeforeClass
   public static void setUp() throws Exception {
-    final String apiKey = System.getenv("API_KEY");
-    helper = new QuoteHttpHelper(apiKey);
+    helper = new QuoteHttpHelper(AppProperties.get(AppProperties.PropertyNames.API_KEY));
     quoteService = new QuoteService(helper, new QuoteDao((DBConnector.getConnection())));
   }
 
@@ -39,13 +39,13 @@ public class QuoteService_IntTest {
     Quote fetchedQuote = fetchedQuoteOpt.get();
     assertEquals(ticker, fetchedQuote.getTicker());
     assertTrue("Expected open to be >= 0.", fetchedQuote.getOpen() >= 0);
-    assertTrue("Exptected high to be >= 0.", fetchedQuote.getHigh() >= 0);
+    assertTrue("Expected high to be >= 0.", fetchedQuote.getHigh() >= 0);
     assertTrue("Expected low to be >= 0.", fetchedQuote.getLow() >= 0);
     assertTrue("Expected price to be >= 0.", fetchedQuote.getPrice() >= 0);
     assertTrue("Expected volume to be >= 0.", fetchedQuote.getVolume() >= 0);
     assertNotNull("Expected latest trading day to be not null.", fetchedQuote.getLatestTradingDay());
     assertTrue("Expected previous close to be >= 0.", fetchedQuote.getPreviousClose() >= 0);
-    assertTrue("Expected change to be >= 0.", fetchedQuote.getChange() >= 0);
+    // 'Change' not checked because it can be any value //
     assertNotNull("Expected change percent to be not null.", fetchedQuote.getChangePercent());
     assertFalse("Expected change percent to not be empty.", fetchedQuote.getChangePercent().isEmpty());
   }

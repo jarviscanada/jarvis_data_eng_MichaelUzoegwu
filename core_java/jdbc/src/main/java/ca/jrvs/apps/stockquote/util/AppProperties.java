@@ -4,17 +4,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.InputStream;
 import java.util.Properties;
-import java.util.stream.Stream;
 
 public class AppProperties {
 
   private static Properties properties;
   private final static Logger LOGGER = LoggerFactory.getLogger(AppProperties.class);
-  private final static String propertiesPath = "src/main/resources/properties.txt";
+  private final static String propertiesPath = "properties.txt";
 
   public static class PropertyNames {
     public final static String DB_CLASS = "db-class";
@@ -33,15 +30,12 @@ public class AppProperties {
 
   private static Properties readProperties() {
     Properties props = new Properties();
-    Path path = Paths.get(propertiesPath);
 
-    try (Stream<String> lines = Files.lines(path)) {
-      lines.forEach((line) -> {
-        String[] keyValue = line.split(":", 2);
-        if (keyValue.length == 2) {
-          props.setProperty(keyValue[0], keyValue[1]);
-        }
-      });
+    try (InputStream inputStream = AppProperties.class.getClassLoader().getResourceAsStream(propertiesPath)) {
+      if (inputStream == null) {
+        LOGGER.error("Could not read properties from {}", propertiesPath);
+      }
+      props.load(inputStream);
     } catch (IOException e) {
       LOGGER.error("Could not read properties from {}", propertiesPath, e);
     }

@@ -35,31 +35,46 @@ public class StockQuoteController {
     modeArgLengths.put(CHECK_STOCK_MODE, 2);
   }
 
-  public void initClient(String[] args) {
+  public void initClient() {
 
-    if (args.length == 0 || !modes.contains(args[0]) || args.length != modeArgLengths.get(args[0])) {
-      System.out.println("Invalid arguments. Example usage:");
-      System.out.println("Buy                 : java App buy <ticker> <number_of_shares>");
-      System.out.println("Sell                : java App sell <ticker>");
-      System.out.println("Check position info : java App check-position <ticker>");
-      System.out.println("Check stock info    : java App check-stock <ticker>");
-      return;
-    }
+    Scanner scanner = new Scanner(System.in);
 
-    final String mode = args[0];
-    final String ticker = args[1];
+    while (true) {
+      printMenu();
+      String[] args = prompt(">", scanner).split(" ");
 
-    switch (mode) {
-      case BUY_MODE -> {
-        try {
-          handleBuyMode(ticker, Integer.parseInt(args[2]));
-        } catch (NumberFormatException e) {
-          System.out.println("Invalid number of shares. Could not parse into number.");
+      if (args.length != 0 && args[0].equals("q")) {
+        break;
+      } else if (args.length == 0 || !modes.contains(args[0]) || args.length != modeArgLengths.get(args[0])) {
+        System.out.println("[INVALID COMMAND]");
+        continue;
+      }
+
+      final String mode = args[0];
+      final String ticker = args[1];
+
+      switch (mode) {
+        case BUY_MODE -> {
+          try {
+            handleBuyMode(ticker, Integer.parseInt(args[2]));
+            prompt("[PRESS ENTER]", scanner);
+          } catch (NumberFormatException e) {
+            System.out.println("Invalid number of shares. Could not parse into number.");
+          }
+        }
+        case SELL_MODE -> {
+          handleSellMode(ticker);
+          prompt("[PRESS ENTER]", scanner);
+        }
+        case CHECK_STOCK_MODE -> {
+          handleCheckStock(ticker);
+          prompt("[PRESS ENTER]", scanner);
+        }
+        case CHECK_POSITION_MODE -> {
+          handleCheckPosition(ticker);
+          prompt("[PRESS ENTER]", scanner);
         }
       }
-      case SELL_MODE -> handleSellMode(ticker);
-      case CHECK_STOCK_MODE -> handleCheckStock(ticker);
-      case CHECK_POSITION_MODE -> handleCheckPosition(ticker);
     }
   }
 
@@ -105,7 +120,7 @@ public class StockQuoteController {
   private void handleCheckStock(String ticker) {
     Optional<Quote> quoteOpt = quoteService.fetchQuoteData(ticker);
     if (quoteOpt.isEmpty()) {
-      System.out.printf("Could not process order. No information found on '%s'.", ticker);
+      System.out.printf("Could not process order. No information found on '%s'.%n", ticker);
       return;
     }
     printQuote(quoteOpt.get());
@@ -115,7 +130,7 @@ public class StockQuoteController {
   private void handleCheckPosition(String ticker) {
     Optional<Position> positionOpt = positionService.getPosition(ticker);
     if (positionOpt.isEmpty()) {
-      System.out.printf("You do not have any shares in '%s'.", ticker);
+      System.out.printf("You do not have any shares in '%s'.%n", ticker);
       return;
     }
 
@@ -124,6 +139,21 @@ public class StockQuoteController {
 
     printPosition(positionOpt.get(), relativePrice);
     LOGGER.info("Retrieved and displayed '{}' position info.", ticker);
+  }
+
+  private String prompt(String prompt, Scanner scanner) {
+    System.out.print(prompt + " ");
+    return scanner.nextLine();
+  }
+
+  private void printMenu() {
+    System.out.println("\nUsage Options----------------------------------------");
+    System.out.println("Buy                 : buy <ticker> <number_of_shares>");
+    System.out.println("Sell                : sell <ticker>");
+    System.out.println("Check position info : check-position <ticker>");
+    System.out.println("Check stock info    : check-stock <ticker>");
+    System.out.println("Exit                : q");
+    System.out.println("-----------------------------------------------------");
   }
 
   private void printPosition(Position position, Double relativePrice) {
