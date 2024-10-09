@@ -21,7 +21,7 @@ Project source code: [https://github.com/jarviscanada/jarvis_data_eng_MichaelUzo
       
   - Grep App: Developed a Java application for searching files and directories using regular expressions, akin to Unix grep. The application was dockerized for simplified deployment.
   - Twitter App: TBD
-  - JDBC App: TBD
+  - JDBC App: Created an app that simulates a stock wallet, allowing users to track and manage stock investments. The app retrieves real-time stock data through an external API and persists records of purchased stocks in a PostgreSQL database. It employs the DAO design pattern to separate data access logic from business logic and is dockerized for easy deployment.
 
 
 ## Highlighted Projects
@@ -34,7 +34,7 @@ Project source code: [https://github.com/jarviscanada/jarvis_data_eng_MichaelUzo
 
 ## Professional Experiences
 
-**Software Developer, Jarvis (2024-Present)**: Worked on hands-on projects in an Agile environment, including creating a computer monitoring agent for a Linux cluster using Bash scripts and a Docker-contained PostgreSQL database. Also developed a Java application for searching files and directories using regular expressions, akin to Unix grep.
+**Software Developer, Jarvis (2024-Present)**: Worked on hands-on projects in an Agile environment, including creating a computer monitoring agent for a Linux cluster using Bash scripts and a PostgreSQL database. Developed Java applications such as a stock wallet simulator that tracks investments with real-time data retrieval and a tool for searching files and directories using regular expressions, similar to Unix grep. Additionally, worked with Docker to streamline deployment across all projects.
 
 **Software Engineer Intern, SurveyMonkey (2022-2022)**: Performed A/B tests on 100,000+ users by making experimental changes to web pages built with React and JavaScript. I also designed and developed a Chrome extension to streamline access to technical details that were buried and spread across browser developer tools. The extension was built using TypeScript and the Chrome Extensions API, with Webpack used for file bundling.
 
