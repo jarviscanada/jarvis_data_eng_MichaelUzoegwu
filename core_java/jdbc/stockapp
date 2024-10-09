@@ -1,0 +1,36 @@
+#!/bin/bash
+
+mode=$1
+db_container_name="stockapp-db"
+
+case "$mode" in
+  setup-db)
+    docker run \
+      --name $db_container_name \
+      -d \
+      -v "${2:-$(pwd)/pgdata}":/var/lib/postgresql/data \
+      -p 5433:5432 \
+      micuzo001/stockapp-db:1.0.0
+    ;;
+  start-db)
+      docker start \
+      $db_container_name
+      ;;
+  stop-db)
+      docker stop \
+      $db_container_name
+      ;;
+  run)
+    docker run \
+    --rm \
+    --network host \
+    -it \
+    -v $(pwd)/logs:/usr/local/app/jdbc/logs \
+    -e STOCK_API_KEY=$2\
+    micuzo001/stockapp:1.0.0
+    ;;
+  *)
+    echo "Invalid Arguments"
+    echo "Usage: stockapp {setup-db|start-db|stop-db|run} [additional arguments]"
+    ;;
+esac
